@@ -61,11 +61,11 @@ export default defineThemeConfig({
       /**
        * Using giscus
        */
-      type: "giscus",
-      repo: "vuepress-theme-hope/giscus-discussions",
-      repoId: "R_kgDOG_Pt2A",
-      category: "Announcements",
-      categoryId: "DIC_kwDOG_Pt2M4COD69",
+      // type: "giscus",
+      // repo: "vuepress-theme-hope/giscus-discussions",
+      // repoId: "R_kgDOG_Pt2A",
+      // category: "Announcements",
+      // categoryId: "DIC_kwDOG_Pt2M4COD69",
 
       /**
        * Using twikoo
@@ -78,6 +78,8 @@ export default defineThemeConfig({
        */
       // type: "waline",
       // serverURL: "https://vuepress-theme-hope-comment.vercel.app",
+      type: "waline",
+      serverURL: "https://baileys-blog-o00sksdbh-baileysrock.vercel.app",
     },
 
     mdEnhance: {
