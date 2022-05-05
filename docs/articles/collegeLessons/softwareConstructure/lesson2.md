@@ -4,9 +4,9 @@ title: java基础
 author: Baileys
 date: 2020-01-01
 category:
-  - 学校实验
+  - 学校课程
 tag:
-  - 学校实验
+  - 学校课程
   - 软件构造
 sticky: false
 star: false

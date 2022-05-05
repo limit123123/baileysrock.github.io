@@ -9,9 +9,9 @@ heroFullScreen: true
 tagline: Dancing with your ghost.
 projects:
   - icon: physics
-    name: 学校实验
-    desc: 学校各个课程的实验的部分描述
-    link: /articles/collegeExperiment
+    name: 学校课程
+    desc: 学校相关课程及课程实验
+    link: /articles/collegeLessons
 
   - icon: table
     name: 数据处理

@@ -3,7 +3,7 @@ import { defineSidebarConfig } from "vuepress-theme-hope";
 export default defineSidebarConfig(
   {
     
-    "/articles/collegeExperiment": [
+    "/articles/collegeLessons": [
       "/" /* /bar/ */,
       {
         text: "深入理解计算机系统",
@@ -43,6 +43,19 @@ export default defineSidebarConfig(
           //   prefix: "article/",
           //   children: ["article5", "article6", "article7", "article8"],
           // },
+        ],
+      },
+      {
+        text: "编译系统",
+        icon: "note",
+        children: [
+          {
+            text: "编译原理课程",
+            icon: "note",
+            collapsable: true,
+            prefix: "compileSystem/",
+            children: ["compileLesson1.md"],
+          },
         ],
       },
     ],
