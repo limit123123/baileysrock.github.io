@@ -160,7 +160,32 @@ $$GOTO(I,X)=CLOSURE({\{}A{\rightarrow}{\alpha}X\cdot{\beta}|A{\rightarrow}{\alph
 规范LR(0)项集族:  
 $$C={\{}I_{0}{\}}{\cup}{\{}I|{\exists}J{\in}C,X{\exists}V_{N}{\cup}V_{T},I=GOTO(J,X)\}$$  
 
-### 3.4LR(0)分析表构造算法 
+### 3.4 LR(0)分析表构造算法 
 ![LR(0)分析表构造算法](/collegeLessons/compileSystem/compileLesson1/compile1_7.png)  
+
+### 3.5 SLR分析法
+LR(0)存在移进归约冲突，可以根据$FOLLOW$集进行移进、归约操作。    
+**与LR(0)的区别**:SLR分析表，只有遇到他的FOLLOW集的元素才进行归约。  
+以$A{\rightarrow}{\alpha}{\cdot}{\in}I_{i}$且$A{\neq}S^{'}$
+LR(0)分析法中，采取归约动作，而SLR分析法中，仅仅对于$FOLLOW$集中的元素归约。   
+**存在的问题**:SLR仅简单的考察下一个输入符号b是否与归约项目$A{\rightarrow}{\alpha}$相关联的$FOLLOW(A)$，但$b{\in}FOLLOW(A)$只是归约$\alpha$的一个必要条件，而非充分条件。
+
+### 3.6 LR(1)分析法  
+![不同位置，后继符号可能不同](/collegeLessons/compileSystem/compileLesson1/compile1_8.png)  
+在特定位置中，A的后继符号集合是$FOLLOW(A)$的子集，如图，分析树中S的右节点R的后继符只能为$\$$，而对于L的右节点，只有当下一个符号为=时，才能将L规约为R，我们采用$L{\rightarrow}*R{\cdot},=$。  
+**规范LR(1)项目**:将一般形式为$[A{\rightarrow}{\alpha}{\cdot}{\beta},a]$称为LR(1)项，其中$[A{\rightarrow}{\alpha}{\beta}$是一个产生式，$a$是一个终结符，(\$为一个特殊的终结符)，他表示在当前状态下，$A$后面必须紧跟终结符，称为该项的展望符。    
+**当$A{\rightarrow}{\alpha}{\cdot}{\beta},a$中${\beta}{\neq}{\epsilon}$时，展望符没有任何作用**  
+**对于$A{\rightarrow}{\alpha}{\cdot}{\beta},a$只有在下一个符号为a时，才能进行归约，a总是$FOLLOW(a)$的子集，而且通常为真子集**  
+
+**构造算法**:构造算法，对规约项目，只针对给定的后继符号归约。
+![LR(1)构造算法](/collegeLessons/compileSystem/compileLesson1/compile1_9.png)  
+
+
+
+
+
+
+
+
 
 
