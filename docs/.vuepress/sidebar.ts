@@ -87,6 +87,19 @@ export default defineSidebarConfig(
     ],
     
 
+    "/articles/deepLearning": [
+      "/" /* /bar/ */,
+      {
+        text: "读论文",
+        icon: "note",
+        collapsable: true,
+        prefix:"readingPapers/",
+        children: ["FaceNet.md"],
+      },
+     
+    ],
+    
+
 
   },
 );

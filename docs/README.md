@@ -23,6 +23,11 @@ projects:
     desc: 学习自然语言处理
     link: /articles/naturalLanguageProcessing
 
+  - icon: script
+    name: 深度学习
+    desc: 学习深度学习
+    link: /articles/deepLearning
+
   - icon: edit
     name: 随笔
     desc: 一些个人的随笔
