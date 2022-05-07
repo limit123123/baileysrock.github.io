@@ -94,7 +94,7 @@ export default defineSidebarConfig(
         icon: "note",
         collapsable: true,
         prefix:"readingPapers/",
-        children: ["FaceNet.md"],
+        children: ["FaceNet.md","AlexNet.md"],
       },
      
     ],
