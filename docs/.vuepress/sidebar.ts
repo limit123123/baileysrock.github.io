@@ -54,7 +54,7 @@ export default defineSidebarConfig(
             icon: "note",
             collapsable: true,
             prefix: "compileSystem/",
-            children: ["compileLesson1.md"],
+            children: ["compileLesson1.md","compileLesson2.md","compileLesson3.md"],
           },
         ],
       },
@@ -66,6 +66,7 @@ export default defineSidebarConfig(
       {
         text: "Huggingface",
         icon: "note",
+        collapsable:true,
         children: [
           {
             text: "trainer",
@@ -83,6 +84,20 @@ export default defineSidebarConfig(
           },
         ],
       },
+
+      {
+        text: "基于预训练模型的方法",
+        icon: "note",
+        collapsable:true,
+        children:[
+          {
+            text:"",
+            collapsable:true,
+            prefix:"",
+            children:[],
+          }
+        ]
+      }
      
     ],
     
@@ -94,7 +109,7 @@ export default defineSidebarConfig(
         icon: "note",
         collapsable: true,
         prefix:"readingPapers/",
-        children: ["FaceNet.md","AlexNet.md"],
+        children: ["FaceNet.md","AlexNet.md","GAN.md"],
       },
      
     ],
