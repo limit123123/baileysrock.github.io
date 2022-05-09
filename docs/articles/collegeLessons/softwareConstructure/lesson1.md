@@ -15,6 +15,7 @@ category:
 tag:
   - 学校课程
   - 软件构造
+article: false
 # 此页面会在文章列表置顶
 sticky: false
 # 此页面会出现在首页的文章板块中
