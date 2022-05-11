@@ -45,7 +45,7 @@ footer: Baileys
 **不同之处**:FaceNet将输入图像输出为128维更加紧致的嵌入，使用三元组损失函数。这个三元组损失函数，包括两张匹配的人脸和一张不匹配的人脸图。loss的目标是使正例和负例有一定的距离。  
 **选择合适的三元组**:提出一种新的负样本的挖掘策略，持续增加三联体的难度。提高聚类的准确性，提出hard-positive挖掘方法，鼓励对一个人进行球状聚类。(聚类这里存疑)  
 **图示**:阈值为1.1时，可以较好的分出三个人。  
-![可以发现难以置信的区别](/deepLearning/readingPapers/FaceNet/FaceNet1_1.png)
+![可以发现难以置信的区别](/DeepLearning/ReadingPapers/FaceNet/FaceNet1_1.png)
 
 ## Related Work
 Inception、深度卷积网络+SVM等方法。
@@ -54,7 +54,7 @@ Inception、深度卷积网络+SVM等方法。
 讨论两种核心模型: ZFNet、Inception。  
 将他们视为黑盒，将他视为端到端的系统，在模型的输出后，使用triplet loss。 
 即对于一张图片来说，经过网络的处理，将图像变换成$R^{d}$的空间的向量。  
-![模型结构](/deepLearning/readingPapers/FaceNet/FaceNet1_2.png)  
+![模型结构](/DeepLearning/ReadingPapers/FaceNet/FaceNet1_2.png)  
 目标:所有相同身份的人脸之间的平方距离很小，而来自不同身份的一对人脸图像之间的平方距离很大。   
 三联体损失函数更加适合人脸验证，它增强不同人之间的脸的间隔，这使得同一个人的脸即使在不同情况下，其欧式距离也会小于其他人。  
 
@@ -93,7 +93,7 @@ $${\lvert\lvert}f(x_{i}^{a})-f(x_{i}^{p}){\rvert\rvert}_{2}^{2}<{\lvert\lvert}f(
 在CPU集群上训练1,000到2,000小时。损失的减少（和准确度的提高）在训练500小时后急剧减慢。训练500小时后，损失的减少（和准确率的提高）明显放缓，但额外的训练仍然可以显著提高性能。  
 作者主要使用ZFNet和GoogleNet，ZFNet添加了1*1*d的卷积核，有1.4亿参数，每幅图像前向计算量为1.6Billion次浮点运算。  
 还使用了GoogleNet。参数相比第一种网络少了20倍，计算量相比第一种网络少了五倍，作者定义了NNS1 ~ NNS4四种小网络。  
-![NN1](/deepLearning/readingPapers/FaceNet/FaceNet1_3.png)
+![NN1](/DeepLearning/ReadingPapers/FaceNet/FaceNet1_3.png)
 
 
 
@@ -115,11 +115,11 @@ $$FAR(d)=\frac{FA(d)}{\mathcal{P}_{diff}}$$
 作者使用100M-200M的训练脸部缩略图，包括大约8百万个不同的身份。  
 以下为部分实验结论:  
 1. 不同的网络  
-![网络](/deepLearning/readingPapers/FaceNet/FaceNet1_4.png)  
+![网络](/DeepLearning/ReadingPapers/FaceNet/FaceNet1_4.png)  
 2. 图像的质量  
-![图像质量](/deepLearning/readingPapers/FaceNet/FaceNet1_5.png)  
+![图像质量](/DeepLearning/ReadingPapers/FaceNet/FaceNet1_5.png)  
 3. 嵌入的维度  
-![嵌入维度](/deepLearning/readingPapers/FaceNet/FaceNet1_6.png)  
+![嵌入维度](/DeepLearning/ReadingPapers/FaceNet/FaceNet1_6.png)  
 
 
 ## 总结

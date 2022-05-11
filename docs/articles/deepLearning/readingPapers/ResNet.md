@@ -31,7 +31,7 @@ footer: Baileys
 当网络很深时，容易出现梯度消失、梯度爆炸等问题，解决方案:1.初始化的权重不宜过大也不宜过小 2.在中间加入Normalization，例如BN等，可以校验每个层之间的输出和他的梯度的均值和方差。避免有些层过大，有些层过小。  
 
 使用上述方法可以使网络收敛，这时一个次要的问题就暴露出来了。随着网络的深度增加，准确度会达到饱和，然后迅速退化，这种退化并不是由于过拟合引起的，而在一个适当的深度模型上增加更多的层会导致更高的训练误差。如图，当网络的深度增加时，train error和test error都在增加。虽然网络收敛了，但训练的效果不理想。    
-![acc degrade](/deepLearning/readingPapers/ResNet/1.png)
+![acc degrade](/DeepLearning/ReadingPapers/ResNet/1.png)
 
 因此简单的堆叠层数，并不能优化网络的性能，对一个浅层网络，在它的基础上添加更多层，例如增加层仅仅是一一对应，例如输入x，输出x，增加网络的层数至少不应该会降低网络的性能。但实验表明我们目前的优化器无法找到这样的解决方案。  
 
@@ -40,7 +40,7 @@ footer: Baileys
 > 个人理解:x为浅层网络学习到表征，经过堆叠的层后得到的映射为$\mathcal{H}(x)$，但不让这个堆叠的网络直接训练得到$\mathcal{H}(x)$，因为直接学习到的很有可能效果不如浅层网络，因此希望它学习$\mathcal{F}(x)=\mathcal{H}(x)-x$，这个函数更易于优化，假定此时恒等映射更好，即$\mathcal{H}(x)=x$，那么可以使堆叠的网络学习到的为$\mathcal{F}(x){\rightarrow}0$,即将残差部分推到0，此时$\mathcal{H}(x)=x$，此时至少可以保证效果不低于浅层网络，若堆叠的层获得了更好的表征，很有可能提升网络的性能。   
 
 如图:  
-![Residual learning](/deepLearning/readingPapers/ResNet/2.png)
+![Residual learning](/DeepLearning/ReadingPapers/ResNet/2.png)
 
 因此，$\mathcal{F}(x)+x$可以被认为是有捷径的连接的前馈神经网络。并且只是简单的连接，因此不增加额外的参数，也不增加计算的复杂性，整个网络仍然可以通过SGD反向传播进行训练。  
 
@@ -84,13 +84,13 @@ ImageNet、CIFAR10上的实验表明:
 ImageNet2012数据集包括1000分类，模型在128万图片下训练，并在5万张图片上验证，最终在10万张图片上测试。  
 
 **Plain Networks**:首先评估18层和34层的普通网络。网络结构下图所示。  
-![architecture](/deepLearning/readingPapers/ResNet/3.png)  
+![architecture](/DeepLearning/ReadingPapers/ResNet/3.png)  
 实验结果如下图所示，结果表明较深的34层比较浅的18层网络的验证误差要高。  
-![architecture](/deepLearning/readingPapers/ResNet/4.png)  
+![architecture](/DeepLearning/ReadingPapers/ResNet/4.png)  
 
 由于使用了Batch Normalization，这种优化的困难不太可能由于梯度消失引起。  
 下图中，我们可以观察到，由于训练时运用了大量数据增强的方法，一开始train(红色)的error要高于验证集，而验证集上噪音较低。由于SGD的优化，两次跳跃为学习率*0.1。(炼丹技巧:前期进入平滑时可以继续平滑一会儿后再将学习率降低) 同时有残差连接，收敛的更快。
-![architecture](/deepLearning/readingPapers/ResNet/5.png)  
+![architecture](/DeepLearning/ReadingPapers/ResNet/5.png)  
 
 
 

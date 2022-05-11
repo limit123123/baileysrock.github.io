@@ -69,7 +69,7 @@ $$ReLU(x)=max(0,x)$$
 LRN的公式如下:
 $$b_{x,y}^{i}=a_{x,y}^{i}/(k+{\alpha}\sum_{j=max(0,i-n/2)}^{min(N-1,i+n/2)}(a_{x,y}^{j})^{2})^{\beta}$$
 
-![图示输出的结构](/deepLearning/readingPapers/AlexNet/AlexNet1_1.png)
+![图示输出的结构](/DeepLearning/ReadingPapers/AlexNet/AlexNet1_1.png)
 
 其中a表示为卷积层(卷积和激活)后输出的结果，输出的结果为$[batch, height, width, channel]$，以$[a, b, c, d]$为例，其表示为第$a$张图片，第$d$个通道，高度为$b$，宽度为$c$的点。$a_{x,y}^{i}$表示为第$i$个特征图在位置$(x,y)$处应用ReLU后的输出，$n$是同一位置上临近的特征图的数量，$N$是特征图总数。
 
@@ -82,7 +82,7 @@ $$b_{x,y}^{i}=a_{x,y}^{i}/(k+{\alpha}\sum_{j=max(0,i-n/2)}^{min(N-1,i+n/2)}(a_{x
 
 ### Overall Architecture
 网络的整体结构如下如所示:  
-![网络的的结构](/deepLearning/readingPapers/AlexNet/AlexNet1_2.png)  
+![网络的的结构](/DeepLearning/ReadingPapers/AlexNet/AlexNet1_2.png)  
 网络整体由五层卷积层，三层全连接层，最后通过1000路的softmax。  
 第二层，第四层，第五层的卷积层只和前一层的结果相连接，这些结果位于一个GPU上。第三层与第二层的所有结果相连接。ReLU非线性激活函数被用于每个卷积层和全连接层的输出。LRN层在第一层和第二层卷积后。Overlapping Pooling层紧随LRN层和第五层卷积层后。
 
@@ -91,8 +91,8 @@ $$b_{x,y}^{i}=a_{x,y}^{i}/(k+{\alpha}\sum_{j=max(0,i-n/2)}^{min(N-1,i+n/2)}(a_{x
 
 ### 数据增强
 1. 对图片做镜像反射，将处理后的图片随机裁剪出227*227的块。两步操作如下图所示。  
-![镜像反射](/deepLearning/readingPapers/AlexNet/AlexNet1_3.jpg)  
-![随机裁剪](/deepLearning/readingPapers/AlexNet/AlexNet1_4.jpg)  
+![镜像反射](/DeepLearning/ReadingPapers/AlexNet/AlexNet1_3.jpg)  
+![随机裁剪](/DeepLearning/ReadingPapers/AlexNet/AlexNet1_4.jpg)  
 作者表示通过这种方式时数据集增大了2048倍，但由此产生的数据产生高度依赖，不适用这种方法会导致严重过拟合，在AlexNet中抽取测试样本及其镜像反射图各5块（总共10块，四个角和中心位置）来进行预测，预测结果是这10个块的softmax块的平均值。  
 但在[OverFeat](https://arxiv.org/pdf/1312.6229.pdf)文章中提到，这样裁剪测试的方法会忽略掉图片中的很多区域，并且从计算角度讲，裁剪窗口重叠存在很多冗余的计算，另外，裁剪窗口只有单一的尺寸，这可能不是ConvNet的最佳置信度的尺寸。  
 

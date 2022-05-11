@@ -3,7 +3,7 @@ import { defineSidebarConfig } from "vuepress-theme-hope";
 export default defineSidebarConfig(
   {
     
-    "/articles/collegeLessons": [
+    "/articles/CollegeLessons": [
       "/" /* /bar/ */,
       {
         text: "深入理解计算机系统",
@@ -33,7 +33,7 @@ export default defineSidebarConfig(
             text: "软件构造实验",
             icon: "note",
             collapsable: true,
-            prefix: "softwareConstructure/",
+            prefix: "SoftwareConstructure/",
             children: ["lesson1.md","lesson2.md","lesson3.md","lesson4.md","lesson5.md","lesson6.md","lesson7.md","lesson8.md"],
           },
           // {
@@ -53,7 +53,7 @@ export default defineSidebarConfig(
             text: "编译原理课程",
             icon: "note",
             collapsable: true,
-            prefix: "compileSystem/",
+            prefix: "CompileSystem/",
             children: ["compileLesson1.md","compileLesson2.md","compileLesson3.md"],
           },
         ],
@@ -61,7 +61,7 @@ export default defineSidebarConfig(
     ],
 
 
-    "/articles/naturalLanguageProcess": [
+    "/articles/NaturalLanguageProcess": [
       "/" /* /bar/ */,
       {
         text: "Huggingface",
@@ -102,13 +102,13 @@ export default defineSidebarConfig(
     ],
     
 
-    "/articles/deepLearning": [
+    "/articles/DeepLearning": [
       "/" /* /bar/ */,
       {
         text: "读论文",
         icon: "note",
         collapsable: true,
-        prefix:"readingPapers/",
+        prefix:"ReadingPapers/",
         children: ["FaceNet.md","AlexNet.md","ResNet.md","GAN.md"],
       },
      
