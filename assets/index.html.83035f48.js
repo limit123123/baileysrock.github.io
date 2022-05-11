@@ -1,1 +1,0 @@
-const e={key:"v-b15d92ba",path:"/articles/dataProcess/",title:"\u6570\u636E\u5904\u7406",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{createdTime:1651679012e3,updatedTime:1651679012e3,contributors:[{name:"Baileys",email:"xiong257246@outlook.com",commits:1}]},readingTime:{minutes:.01,words:4},filePathRelative:"articles/dataProcess/README.md"};export{e as data};
