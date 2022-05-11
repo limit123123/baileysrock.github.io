@@ -226,7 +226,7 @@ gcc -S hello.i -o hello.s
 
 hello.s源代码如图3-17所示.
 
-![image013.png](/collegeLessons/CSAPP/image013.png)
+![image013.png](/CollegeLessons/CSAPP/image013.png)
 
 如图3-17，查看hello.s源代码，根据x86-64使用寄存器保存参数的规则，此时argv应该保存在%rsi中，如图，发现%rsi被调用的地方。根据.L4中对addq $8, %rax的操作，可得argv中元素为八个字节。分析：发现，首先将%rsi的值赋给-32(%rbp)，再将-32(%rbp)的值赋给%rax，再使用addq $16, %rax的指令，将%rax的指针移到argv偏移16字节的位置，再将它的值保存到%rdx，再将-32(%rbp)中的值加8，并将对应的值保存到%rsi。此处分别对应argv[1]、argv[2]。
 	
@@ -236,48 +236,48 @@ hello.s源代码如图3-17所示.
 #### 3.3.9 控制转移
 源代码中存在两次控制转移：
 
-![image023.png](/collegeLessons/CSAPP/image023.png) 
+![image023.png](/CollegeLessons/CSAPP/image023.png) 
 
 如图3-18，首先if及for实现控制转移。
 
-![image024.png](/collegeLessons/CSAPP/image024.png) 
+![image024.png](/CollegeLessons/CSAPP/image024.png) 
 
 如图3-19，图中显示的是if控制转移。若-20(%rbp)处的值等于4，则跳转到.L2，否则继续执行leaq等操作。
 
-![image025.png](/collegeLessons/CSAPP/image025.png) 
+![image025.png](/CollegeLessons/CSAPP/image025.png) 
 
 如图3-20，图中显示的是for控制转移。若-4(%rbp)处的值大于4，则调用getchar函数，否则跳转到.L4处。
 
 #### 3.3.10 函数调用
 
-![image026.png](/collegeLessons/CSAPP/image026.png) 
+![image026.png](/CollegeLessons/CSAPP/image026.png) 
 如图3-21，hello.c文件中，共存在七处函数调用。
 
 printf、exit：
 
-![image027.png](/collegeLessons/CSAPP/image027.png) 
+![image027.png](/CollegeLessons/CSAPP/image027.png) 
 
 如图3-22，若argv!=4，则此时会调用puts函数，输出“用法: Hello 学号 姓名 秒数！\n”，再将1赋给%edi中，此时%edi作为参数调用exit函数，完成两次函数调用。
 
 Printf、atoi、sleep：
 
-![image028.png](/collegeLessons/CSAPP/image028.png) 
+![image028.png](/CollegeLessons/CSAPP/image028.png) 
 
 如图3-23，若此时argc为4，则在经过赋值等操作后，将跳转到.L4中，经过前面的分析，我们有此时将会调用printf函数，输出argv[1]和argv[2]，并根据将argv[3]的值到存在%rdi中，调用atoi函数，在将结果保存到%edi中，%edi作为参数，调用sleep函数，此时完成了三次函数调用。
 
 getchar:
 
-![image029.png](/collegeLessons/CSAPP/image029.png) 
+![image029.png](/CollegeLessons/CSAPP/image029.png) 
 
 图 3 - 24
 如图3-24，若此时跳出循环，则会调用getchar函数。
 main:
 
-![image030.png](/collegeLessons/CSAPP/image030.png) 
+![image030.png](/CollegeLessons/CSAPP/image030.png) 
 
 如图3-25，存在对main函数的调用。
 
-![image031.png](/collegeLessons/CSAPP/image031.png) 
+![image031.png](/CollegeLessons/CSAPP/image031.png) 
 
 如图3-26，将%rax赋值为0，作为main函数的返回值，并通过调用leave、ret指令结束main函数。故共计存在七次函数调用。
 
@@ -305,37 +305,37 @@ main:
     gcc -c hello.s -o hello.o
 ```
 在WSL中，执行该命令，如图4-1所示：
-![image032.png](/collegeLessons/CSAPP/image032.png) 
+![image032.png](/CollegeLessons/CSAPP/image032.png) 
 
 ### 4.3 可重定位目标elf格式
 分析hello.o的ELF格式，用readelf等列出其各节的基本信息，特别是重定位项目分析。
 
 首先回忆一下elf文件的结构，如图4-2所示：
-![image033.png](/collegeLessons/CSAPP/image033.png) 
+![image033.png](/CollegeLessons/CSAPP/image033.png) 
 
 在Ubuntu下读取分析hello.o文件使用如下命令，将hello.o文件的基本信息读入到hello_o.elf文件中：
 ``` shell
 	readelf -a hello.o > hello_o.elf
 ```
-![image034.png](/collegeLessons/CSAPP/image034.png) 
+![image034.png](/CollegeLessons/CSAPP/image034.png) 
 
 通过查看hello_o.elf文件，我们可以获得如下信息：
 
 * ELF Header：以16字节的序列Magic开始，这个序列描述了生成该文件的系统的字的大小和字节顺序。ELF头剩下的部分包含帮助连接器语法分析和解释目标文件的信息。其中包含ELF头的大小、目标文件的类型（如可重定位、可执行或者共享的）、机器类型（如x86-64）、节头部表的文件偏移，以及节头部表中条目的大小和数量。不同节的位置和大小是由节头部表描述的，其中目标文件中每个节都有一个固定大小的条目（entry）。
 
-![image035.png](/collegeLessons/CSAPP/image035.png) 
+![image035.png](/CollegeLessons/CSAPP/image035.png) 
 
 * Section Headers：如图4-5，节头表包括节名称，节的类型，节的属性（读写权限），节在ELF文件中所占的长度以及节的对齐方式和偏移量。我们可以使用终端指令readelf -S hello.o来查看节头表。
 
-![image036.png](/collegeLessons/CSAPP/image036.png) 
+![image036.png](/CollegeLessons/CSAPP/image036.png) 
 
 * 符号表：如图4-6所示，符号表存放在程序中定义和引用的函数和全局变量的信息。
 
-![image037.png](/collegeLessons/CSAPP/image037.png) 
+![image037.png](/CollegeLessons/CSAPP/image037.png) 
 
 * 重定位表：重定位条目包含了链接时重定位所需的全部信息：需要被重定位的代码在其段中的偏移、该段代码所对应的符号在符号表中的索引以及重定位类型、重定位时被使用到的加数。如图4-7所示，为hello.o对应的重定位表。
 
-![image038.png](/collegeLessons/CSAPP/image038.png) 
+![image038.png](/CollegeLessons/CSAPP/image038.png) 
 
 
 
@@ -356,11 +356,11 @@ objdump -d -r hello.o > hello_o.s
 
 指令，将反汇编的代码写入hello_o.s中，如图4-8所示。
 
-![image039.png](/collegeLessons/CSAPP/image039.png) 
+![image039.png](/CollegeLessons/CSAPP/image039.png) 
 
 通过VSCode打开hello.s与hello_o.s，并仔细对比，如图4-9所示。
 
-![image040.png](/collegeLessons/CSAPP/image040.png) 
+![image040.png](/CollegeLessons/CSAPP/image040.png) 
 
 从图中可以看出，hello.o的反汇编代码和hello.s大致相同，在某些地方存在小部分区别。
 
@@ -369,22 +369,22 @@ objdump -d -r hello.o > hello_o.s
 * 分支转移：hello.s文件中分支通过使用段名称跳转，而在hello.o的反汇编代码中，通过地址跳转。
 如图4-10，我们可以发现在hello.s中，分支转移通过.L2、.L3进行跳转。如图4-11，我们可以发现，在hello.o的反汇编代码中，分支转移通过计算地址，进行跳转。
 
-![image041.png](/collegeLessons/CSAPP/image041.png) 
+![image041.png](/CollegeLessons/CSAPP/image041.png) 
 
-![image042.png](/collegeLessons/CSAPP/image042.png) 
+![image042.png](/CollegeLessons/CSAPP/image042.png) 
 
 * 函数调用：如图4-12，在hello.s文件中，函数调用call只需要加函数名称，在hello.o反汇编代码中，如图4-13，call则是使用了当前指令的下一个字节。原因是因为该函数迟绑定，该函数为共享库中函数，只有运行时，动态链接器作用后才能确定相应的PLT条目地址。
 
-![image043.png](/collegeLessons/CSAPP/image043.png) 
+![image043.png](/CollegeLessons/CSAPP/image043.png) 
 
-![image044.png](/collegeLessons/CSAPP/image044.png) 
+![image044.png](/CollegeLessons/CSAPP/image044.png) 
 
 
 * 操作数：如图4-14，在hello.s中，操作数为十进制数，而在hello.o的反汇编代码中，如图4-15，操作数为十六进制数。
 
-![image045.png](/collegeLessons/CSAPP/image045.png) 
+![image045.png](/CollegeLessons/CSAPP/image045.png) 
 
-![image046.png](/collegeLessons/CSAPP/image046.png) 
+![image046.png](/CollegeLessons/CSAPP/image046.png) 
 
 
 说明机器语言的构成，与汇编语言的映射关系。特别是机器语言中的操作数与汇编语言不一致，特别是分支转移函数调用等。
@@ -431,9 +431,9 @@ gcc hello.o -o hello
 ```
 如图5-1使用方法一链接，5-2使用方法二链接。(最终保留通过ld链接生成的可执行文件)
 
-![image047.png](/collegeLessons/CSAPP/image047.png) 
+![image047.png](/CollegeLessons/CSAPP/image047.png) 
 
-![image048.png](/collegeLessons/CSAPP/image048.png) 
+![image048.png](/CollegeLessons/CSAPP/image048.png) 
 
 ### 5.3 可执行目标文件hello的格式
 
@@ -443,13 +443,13 @@ gcc hello.o -o hello
 	Readelf -a hello > hello_elf
 ```
 
-![image049.png](/collegeLessons/CSAPP/image049.png) 
+![image049.png](/CollegeLessons/CSAPP/image049.png) 
 
 执行上述命令，如图5-3所示。
 
 * 读取hello的ELF头，如图5-4所示。
 
-![image050.png](/collegeLessons/CSAPP/image050.png) 
+![image050.png](/CollegeLessons/CSAPP/image050.png) 
 
 以16字节的序列Magic开始，这个序列描述了生成该文件的系统的字的大小和字节顺序。ELF头剩下的部分包含帮助连接器语法分析和解释目标文件的信息。其中包含ELF头的大小、目标文件的类型（如可重定位、可执行或者共享的）、机器类型（如x86-64）、节头部表的文件偏移，以及节头部表中条目的大小和数量。不同节的位置和大小是由节头部表描述的，其中目标文件中每个节都有一个固定大小的条目,与链接前的ELF header相比，除了系统决定的基本信息不变，section header和paogram header都增加，并且增加了入口处的地址。
 
@@ -457,27 +457,27 @@ gcc hello.o -o hello
 
 Section Headers对hello中所有节的信息进行了声明，其中包括大小Size以及在程序中的偏移量Offset，因此根据Section Headers中的信息，我们可以用Hexedit定位到各个节所在的空间。Address为程序被载入到虚拟地址的起始空间。
 
-![image051.png](/collegeLessons/CSAPP/image051.png) 
+![image051.png](/CollegeLessons/CSAPP/image051.png) 
 
 * 程序头部表，ELF文件头结构就像是一个总览图，描述了整个文件的布局情况，因此在ELF文件头结构允许的数值范围，整个文件的大小是可以动态增减的，告诉系统如何创建进程映像。如图5-6所示，即为hello可执行文件的程序头部表。
 
-![image052.png](/collegeLessons/CSAPP/image052.png) 
+![image052.png](/CollegeLessons/CSAPP/image052.png) 
 
 * 动态偏移表：若目标文件参与动态链接，则其程序头表将包含一个类型为PT_DYNAMIC的元素，此段包含.dynamic节。特殊符号_DYNAMIC用于标记包含以下结构的数组的节，如图5-7所示。
 
-![image053.png](/collegeLessons/CSAPP/image053.png) 
+![image053.png](/CollegeLessons/CSAPP/image053.png) 
 
 * 重定位节.rela.text，一个.text节中位置的列表，包含.text节中需要进行重定位的信息，当链接器把这个目标文件和其他文件组合时，需要修改这些位置。如图5-8所示，分别描述了main、puts、printf、getchar、atoi、exit、sleep函数的重定位声明。
 
-![image054.png](/collegeLessons/CSAPP/image054.png) 
+![image054.png](/CollegeLessons/CSAPP/image054.png) 
 
 * 符号表节：目标文件的符号表包含定位和重定位程序的符号定义和符号引用所需的信息。符号表索引是此数组的下标。索引0指定表中第一项用作未定义的符号索引。如图5-9所示。
 
-![image055.png](/collegeLessons/CSAPP/image055.png) 
+![image055.png](/CollegeLessons/CSAPP/image055.png) 
 
 * 动态符号表用来保存于动态链接相关的导入导出符号，不包括模块内部的符号。如图5-10所示。
 
-![image056.png](/collegeLessons/CSAPP/image056.png) 
+![image056.png](/CollegeLessons/CSAPP/image056.png) 
 
 
 
@@ -488,20 +488,20 @@ Section Headers对hello中所有节的信息进行了声明，其中包括大小
 
 * 打开edb
 
-![image057.png](/collegeLessons/CSAPP/image057.png)
+![image057.png](/CollegeLessons/CSAPP/image057.png)
 
 
 * 加载hello可执行文件
 
-![image058.png](/collegeLessons/CSAPP/image058.png)
+![image058.png](/CollegeLessons/CSAPP/image058.png)
 
 * 观察edb的Data Dump窗口。窗口显示虚拟地址由0x401000开始，到0x401ff0结束。之间对应5.3中的节头表的声明。根据截图5-5，可得起始位置为0x401000。Data Dump窗口如图5-13所示：
 
-![image059.png](/collegeLessons/CSAPP/image059.png)
+![image059.png](/CollegeLessons/CSAPP/image059.png)
 
 * 观察edb的Symbols的窗口，如图5-14所示，与5-5中各节所示一致。
 
-![image060.png](/collegeLessons/CSAPP/image060.png)
+![image060.png](/CollegeLessons/CSAPP/image060.png)
 
 使用edb加载hello，查看本进程的虚拟地址空间各段信息，并与5.3对照分析说明。
 
@@ -510,33 +510,33 @@ Section Headers对hello中所有节的信息进行了声明，其中包括大小
 
 使用objdump -d -r hello指令对hello反汇编，如图5-15所示：
 
-![image061.png](/collegeLessons/CSAPP/image061.png)
+![image061.png](/CollegeLessons/CSAPP/image061.png)
 
 打开VSCode检查hello与hello.o的反汇编文件的不同。如图5-16所示。
 
-![image062.png](/collegeLessons/CSAPP/image062.png)
+![image062.png](/CollegeLessons/CSAPP/image062.png)
 
 
 分析hello反汇编文件与hello.o反汇编文件的区别：
 
 * hello的反汇编代码中，比hello.o的反汇编代码中多了.init节，.plt节，.fini节，.plt.sec等。如图5-17所示。
 
-![image063.png](/collegeLessons/CSAPP/image063.png)
+![image063.png](/CollegeLessons/CSAPP/image063.png)
 
 * hello的反汇编代码中增加了外部链接的共享库函数。例如在hello的反汇编代码中可以看到puts@plt等，如图5-18、图5-19、图5-20所示atoi函数所示。
 
-![image064.png](/collegeLessons/CSAPP/image064.png)
+![image064.png](/CollegeLessons/CSAPP/image064.png)
 
-![image065.png](/collegeLessons/CSAPP/image065.png)
+![image065.png](/CollegeLessons/CSAPP/image065.png)
 
-![image066.png](/collegeLessons/CSAPP/image066.png)
+![image066.png](/CollegeLessons/CSAPP/image066.png)
 
 
 * hello的反汇编代码相比hello.o的反汇编代码，跳转地址修改为了虚拟内存地址。如图5-18、图5-19所示。此时callq后跟的指令为0xff ff ff 26 = -0xda，且此时执行到的地址为0x401195，0x401195+0x5-0xda=0x4010c0。此时0x4010c0为atoi@plt函数的地址。
 
 * hello中节的起始位置修改为了虚拟地址，hello.o反汇编代码中为相对偏移地址。如图5-21所示。
 
-![image067.png](/collegeLessons/CSAPP/image067.png)
+![image067.png](/CollegeLessons/CSAPP/image067.png)
 
 hello如何重定位的：
 
@@ -568,31 +568,31 @@ hello如何重定位的：
 &lt;__libc_csu_fini&gt; | 0x0000000000401230
 &lt;_fini&gt; | 0x0000000000401238
 
-![image068.png](/collegeLessons/CSAPP/image068.png)
+![image068.png](/CollegeLessons/CSAPP/image068.png)
 
 并在使用gdb调试hello的时候，对每个函数加上断点，如图5-23所示：
 
-![image069.png](/collegeLessons/CSAPP/image069.png)
+![image069.png](/CollegeLessons/CSAPP/image069.png)
 
 使用r 1190200708 熊峰 2开始调试，如图5-24所示：
 
-![image070.png](/collegeLessons/CSAPP/image070.png)
+![image070.png](/CollegeLessons/CSAPP/image070.png)
 
 运行流程如下，如图5-25所示：首先调用0x401000处的_init函数，然后调用0x4010f0处的_start函数，然后调用0x4011c8处的__libc_csu_init函数，然后再调用_init函数，之后就进入了0x401125处的main函数。
 
-![image071.png](/collegeLessons/CSAPP/image071.png)
+![image071.png](/CollegeLessons/CSAPP/image071.png)
 
 如图5-26，在进入main函数后，首先调用位于0x4010a0处的printf@plt函数。然后调用0x4010c0处的atoi@plt函数，然后调用位于0x4010e0处的sleep@plt函数，循环八次。
 
-![image072.png](/collegeLessons/CSAPP/image072.png)
+![image072.png](/CollegeLessons/CSAPP/image072.png)
 
 如图5-27，在最后一次调用sleep@plt函数后，调用位于0x4010b0处的getchar函数@plt函数。
 
-![image073.png](/collegeLessons/CSAPP/image073.png)
+![image073.png](/CollegeLessons/CSAPP/image073.png)
 
 如图5-28，最后调用_fini函数，程序调试结束。
 
-![image074.png](/collegeLessons/CSAPP/image074.png)
+![image074.png](/CollegeLessons/CSAPP/image074.png)
 
 ### 5.7 hello的动态链接分析
 
@@ -603,19 +603,19 @@ GOT同样是一个数组，每个条目是8字节的地址，和PLT联合使用�
 
 当某个动态链接函数第一次被调用时先进入对应的PLT条目例如PLT[2]，然后PLT指令跳转到对应的GOT条目中例如GOT[4]，其内容是PLT[2]的下一条指令。然后将函数的ID压入栈中后跳转到PLT[0]。PLT[0]通过GOT[1]将动态链接库的一个参数压入栈中，再通过GOT[2]间接跳转进动态链接器中。动态链接器使用两个栈条目来确定函数的运行时位置，用这个地址重写GOT[4]，然后再次调用函数。经过上述操作，再次调用时PLT[2]会直接跳转通过GOT[4]跳转到函数而不是PLT[2]的下一条地址。
 
-![image075.png](/collegeLessons/CSAPP/image075.png)
+![image075.png](/CollegeLessons/CSAPP/image075.png)
 
 通过readelf工具，在hello的节头表中可以发现GOT表，如图5-30所示。
 
-![image076.png](/collegeLessons/CSAPP/image076.png)
+![image076.png](/CollegeLessons/CSAPP/image076.png)
 
 可以看到.got.plt位于0x404000处，如图5-31所示。
 
-![image077.png](/collegeLessons/CSAPP/image077.png)
+![image077.png](/CollegeLessons/CSAPP/image077.png)
 
 我们可以看到在执行_init之后，发生了变化。如图5-30及5-31所示。
 
-![image078.png](/collegeLessons/CSAPP/image078.png)
+![image078.png](/CollegeLessons/CSAPP/image078.png)
 
 在之后的函数调用时，首先跳转到PLT执行.plt中逻辑，第一次访问跳转时GOT地址为下一条指令，将函数序号压栈，然后跳转到PLT[0]，在PLT[0]中将重定位表地址压栈，然后访问动态链接器，在动态链接器中使用函数序号和重定位表确定函数运行时地址，重写GOT，再将控制传递给目标函数。之后如果对同样函数调用，第一次访问跳转直接跳转到目标函数。
 
@@ -653,7 +653,7 @@ Shell-bash的处理流程：
 
 在终端中输入./hello 1190200708 熊峰 5，shell首先判断它不是内置命令，于是shell查找当前目录下的可执行文件hello，并将其调入内存，shell将它解释为系统功能函数并交给内核执行。Shell通过pid_t fork(void)函数创建一个子进程，子进程会获得与父进程虚拟地址空间相同的一段数据结构的副本。父进程与子进程最大的不同在于他们分别拥有不同的PID。
 
-![image079.png](/collegeLessons/CSAPP/image079.png)
+![image079.png](/CollegeLessons/CSAPP/image079.png)
 
 ### 6.4 hello的execve过程
 
@@ -663,11 +663,11 @@ execve函数加载并运行可执行目标文件hello，且包含相对应的一
 
 如图6-2所示，当main开始执行时，一个典型的用户栈组织结构如下：
 
-![image080.png](/collegeLessons/CSAPP/image080.png)
+![image080.png](/CollegeLessons/CSAPP/image080.png)
 
 如图6-3所示，linux x86-64运行的内存映像。
 
-![image081.png](/collegeLessons/CSAPP/image081.png)
+![image081.png](/CollegeLessons/CSAPP/image081.png)
 
 
 
@@ -683,7 +683,7 @@ execve函数加载并运行可执行目标文件hello，且包含相对应的一
 
 设置定时器，休眠的时间等于自己设置的时间，当定时器时间到时，发送一个中断信号。内核收到中断信号进行终端处理，hello被重新加入运行队列，等待执行，这时候hello就可以运行在自己的逻辑控制流。
 
-![image082.png](/collegeLessons/CSAPP/image082.png)
+![image082.png](/CollegeLessons/CSAPP/image082.png)
 
 
 
@@ -695,35 +695,35 @@ hello的异常：在执行过程中，来自处理器外部I/O设备的信号的
 
 * Crtl-Z
 
-![image083.png](/collegeLessons/CSAPP/image083.png)
+![image083.png](/CollegeLessons/CSAPP/image083.png)
 
 图6-5为正常执行hello程序。
 
 当按下Crtl-Z的时候，将会给进程发出SIGSTP信号，hello程序被挂起，使用ps查看，如图6-6所示，发现存在hello，直到SIGCONT信号到来：
 
-![image084.png](/collegeLessons/CSAPP/image084.png)
+![image084.png](/CollegeLessons/CSAPP/image084.png)
 
-![image085.png](/collegeLessons/CSAPP/image085.png)
+![image085.png](/CollegeLessons/CSAPP/image085.png)
 
-![image086.png](/collegeLessons/CSAPP/image086.png)
+![image086.png](/CollegeLessons/CSAPP/image086.png)
 
 如图6-8，对挂起的程序，发送SIGKILL信号，强制终止进程。
 
 * Crtl-C
 
-![image087.png](/collegeLessons/CSAPP/image087.png)
+![image087.png](/CollegeLessons/CSAPP/image087.png)
 
 当按下crtl+c的时候，父进程会接收到SIGINT信号，使hello结束运行，用调用wait等函数回收hello进程，使用ps查看，如图6-7所示，当前后台中已没有hello进程。
 
 * 在运行过程中乱按键盘
 
-![image088.png](/collegeLessons/CSAPP/image088.png)
+![image088.png](/CollegeLessons/CSAPP/image088.png)
 
 乱按的内容会在屏幕上显示，但是不影响程序的继续执行，getchar将读入一行输入，并且shell会将之后输入的字符串当作新的指令。
 
 * pstree
 
-![image089.png](/collegeLessons/CSAPP/image089.png)
+![image089.png](/CollegeLessons/CSAPP/image089.png)
 
 
 
@@ -749,7 +749,7 @@ hello的异常：在执行过程中，来自处理器外部I/O设备的信号的
 * 物理地址：
 物理地址（Physical Address）是指出现在CPU外部地址总线上的寻址物理内存的地址信号，是地址变换的最终结果地址。如果启用了分页机制，那么hello的线性地址会使用页目录和页表中的项变换成hello的物理地址；如果没有启用分页机制，那么hello的线性地址就是物理地址。
 
-![image090.png](/collegeLessons/CSAPP/image090.png)
+![image090.png](/CollegeLessons/CSAPP/image090.png)
 
 ### 7.2 intel逻辑地址到线性地址的变换-段式管理
 
@@ -758,7 +758,7 @@ hello的异常：在执行过程中，来自处理器外部I/O设备的信号的
 * *	保护模式：以段描述符作为下标，到GDT/LDT表查表获得段地址，段地址+偏移地址=线性地址
 段选择符的suo因组成和定义如下，分别指的是索引为位（index），TI，RPL，当索引位TI=0时，段描述符在rpgdt中，TI=1时，段描述表在rpldt中。而索引位index就类似于一个数组，每个元素内都存放一个段的描述符，索引位首地址就是我们在查找段描述符时在这个元素数组当中的索引。一个段描述符的首地址是指含有8个元素的字节，我们通常可以查找到段描述符之后获取段的首地址，再把它与线性逻辑地址的偏移量进行相加就可以得到段所需要的一个线性逻辑地址。
 
-![image091.png](/collegeLessons/CSAPP/image091.png)
+![image091.png](/CollegeLessons/CSAPP/image091.png)
 
 如图7-3所示，其中RPL提供权限管理，TI提供描述表选择。高13位则作为地址，给处当前段在段描述符表中的位置。即在整个段表中的偏移。
 
@@ -766,7 +766,7 @@ hello的异常：在执行过程中，来自处理器外部I/O设备的信号的
 
 在段选择符中，用TI全段选择附表的类型，在使用高13位的地址，找到段描述符表，获得32位的段基址，再将段内偏移与段基址相加，获得32位线性地址，但是在现代Linux系统中，不适用分段机制，将前16位全设置为0，逻辑地址即线性地址。
 
-![image092.png](/collegeLessons/CSAPP/image092.png)
+![image092.png](/CollegeLessons/CSAPP/image092.png)
 
 
 
@@ -776,7 +776,7 @@ hello的异常：在执行过程中，来自处理器外部I/O设备的信号的
 * 首先Linux系统又自己的虚拟内存系统，Linux将虚拟内存组织成一些段的集合，段之外的虚拟内存不存在因此不需要记录。
 * 内核为hello进程维护了一个段的任务结构即图中的task_struct，其中条目mm->mm_struct（描述了虚拟内存的当前状态），pgd->第一级页表的基地址（结合一个进程一串页表），mmap->vm_area_struct的链表。一个链表条目对应一个段，链表相连指出了hello进程虚拟内存中的所有段。
 
-![image093.png](/collegeLessons/CSAPP/image093.png)
+![image093.png](/CollegeLessons/CSAPP/image093.png)
 
 * 虚拟页（VP）：系统将每个段分割为大小固定的块，来作为进行数据传输的单元。对于Linux，每个虚拟页大小为4KB.
 * 物理页（PP/页帧）：类似于虚拟页，虚拟内存也被分割。虚拟内存系统中MMU负责地址翻译，MMU使用页表，即存一种放在物理内存中的数据结构，将虚拟页到物理页映射，即虚拟地址到物理地址的映射。
@@ -785,7 +785,7 @@ hello的异常：在执行过程中，来自处理器外部I/O设备的信号的
 * * 如果时有效位0+非NULL，则代表在虚拟内存空间中分配了但是没有被缓存到物理内存中；
 * * 如果有效位是1，则代表该内存已经缓存在了物理内存中，可以得到其物理页号PPN，与虚拟页偏移量共同构成物理地址PA。
 
-![image094.png](/collegeLessons/CSAPP/image094.png)
+![image094.png](/CollegeLessons/CSAPP/image094.png)
 
 ### 7.4 TLB与四级页表支持下的VA到PA的变换
 
@@ -793,17 +793,17 @@ hello的异常：在执行过程中，来自处理器外部I/O设备的信号的
 
 Core i7采用四级页表层次结构，每个四级页表进程都有它自己的私有的页表层次结构，这种设计方法从两个基本方面就是减少了对内存的需求，如果一级页表的PTE全部为空，那么二级页表就不会继续存在，从而为进程节省了大量的内存，而且也只有一级页表才会有需要总是在一个内存中。四级页表的层次结构操作流程如下:36位虛拟地址被寄存器划分出来组成四个9位的片，每个片被寄存器用作到一个页表的偏移量。CR3寄存器内储存了一个L1页表的一个物理起始基地址，指向第一级页表的一个起始和最终位置，这个地址是页表上下文的一部分信息。VPN1提供了到一个L1PTE的偏移量，这个PTE寄存器包含一个L2页表的起始基地址。VPN2提供了到一个L2PTE的偏移量，一共四级，逐级以此层次类推。
 
-![image095.png](/collegeLessons/CSAPP/image095.png)
+![image095.png](/CollegeLessons/CSAPP/image095.png)
 
 ### 7.5 三级Cache支持下的物理内存访问
 
 三级cache的缓存层次的结构如图7-7所示：
 
-![image096.png](/collegeLessons/CSAPP/image096.png)
+![image096.png](/CollegeLessons/CSAPP/image096.png)
 
 物理地址的结构包括组索引位CI（倒数7-12位），使用它进行组索引，使用组索引位找到对应的组后，假设我们的cache采用8路的块，匹配标记位CT（前40位）如果匹配成功且寻找到的块的有效位valid上的标志的值为1，则命中，根据数据偏移量CO（后6位）取出需要的数据然后进行返回。
 
-![image097.png](/collegeLessons/CSAPP/image097.png)
+![image097.png](/CollegeLessons/CSAPP/image097.png)
 
 如果没有数据被匹配成功，或者匹配成功但是标记位是1，这些都是未命中即miss的情况，此时向下一级缓存中查询数据（L2 Cache->L3 Cache->主存），并且将查找到的数据加载到Cache里，我们通常采用LRU策略，确定哪一个块作为牺牲快。
 
@@ -827,13 +827,13 @@ Shell通过调用fork的函数可以让进程内核自动创建yige新的进程�
 * 映射共享区域：hello程序与共享对象libc.so链接，libc.so是动态链接到这个程序的，然后再映射到用户虚拟地址空间中的共享区域内。
 * 设置程序计数器（PC）：execve会设置当前进程上下文的程序计数器，使之指向代码区域的入口点后，对该进程的调度就将重代码区域入口点开始，并根据需要通过缺页故障将磁盘中的数据与代码载入物理内存。
 
-![image098.png](/collegeLessons/CSAPP/image098.png)
+![image098.png](/CollegeLessons/CSAPP/image098.png)
 
 ### 7.8 缺页故障与缺页中断处理
 
 如图7-10，处理缺页是由硬件和操作系统内核协作完成的。
 
-![image099.png](/collegeLessons/CSAPP/image099.png)
+![image099.png](/CollegeLessons/CSAPP/image099.png)
 
 具体处理流程如下：
 * 处理器生成一个虚拟地址，并将它传送给MMU
@@ -858,7 +858,7 @@ Shell通过调用fork的函数可以让进程内核自动创建yige新的进程�
 
 显示空闲链表：将空闲块组织为某种形式的显式数据结构。因为根据定义，程序不需要一个空闲块的主体，所以实现这个数据结构的指针可以存放在这些空闲块的主体里面。例如，堆可以组织成一个双向空闲链表，在每个空闲块中，都包含一个pred（前驱）和succ（后继）指针。
 
-![image100.png](/collegeLessons/CSAPP/image100.png)
+![image100.png](/CollegeLessons/CSAPP/image100.png)
 
 隐式分配器：另一方面，要求分配器检测一个已分配块何时不再被程序所使用，那么就释放这个块。隐式分配器也叫做垃圾收集器，而自动释放未使用的已分配的块的过程叫做垃圾收集，例如，注入Lisp、ML以及Java之类的高级语言就依赖垃圾收集来释放已分配的块。
 

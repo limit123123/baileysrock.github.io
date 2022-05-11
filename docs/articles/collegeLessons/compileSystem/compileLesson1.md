@@ -27,7 +27,7 @@ footer: 语法分析
 # 语法分析
 
 ## 1. 自顶向下分析概述
-![推导与归约](/collegeLessons/compileSystem/compileLesson1/compile1_1.png)  
+![推导与归约](/CollegeLessons/CompileSystem/CompileLesson1/compile1_1.png)  
 规范推导:最右推导  
 规范归约:最左规约  
 
@@ -135,21 +135,21 @@ $$SELECT(A{\rightarrow}{\alpha}_{1}){\cap}SELECT(A{\rightarrow}{\alpha}_{2}){\ca
 
 ### 3.1 LR分析法
 工作过程:  
-![初始化及一般情况](/collegeLessons/compileSystem/compileLesson1/compile1_2.png)    
+![初始化及一般情况](/CollegeLessons/CompileSystem/CompileLesson1/compile1_2.png)    
 1. $ACTION[s_{m},a_{i}]=sx$  
-![变化后的格局](/collegeLessons/compileSystem/compileLesson1/compile1_3.png)  
+![变化后的格局](/CollegeLessons/CompileSystem/CompileLesson1/compile1_3.png)  
 2. $ACTION[s_{m},a_{i}]=rx$,则用第$x$个产生式$A{\rightarrow}X_{m-(k-1)}...X_{m}$进行归约。  
-![变化后的格局](/collegeLessons/compileSystem/compileLesson1/compile1_4.png)  
+![变化后的格局](/CollegeLessons/CompileSystem/CompileLesson1/compile1_4.png)  
 $GOTO[s_{m-k},A]=y$  
 进而有  
-![变化后的格局](/collegeLessons/compileSystem/compileLesson1/compile1_5.png)  
+![变化后的格局](/CollegeLessons/CompileSystem/CompileLesson1/compile1_5.png)  
 3. $ACTION[s_{m},a_{i}]=acc$，则表示分析成功。  
 4. $ACTION[s_{m},a_{i}]=error$，则表示出现语法错误。   
 
 
 ### 3.2 增广文法
 如果$G$是一个以$S$为开始符号的文法，则$G$的增广文法$G^{'}$就是在$G$中加上新开始符号$S^{'}$和产生式$S^{'}{\rightarrow}S$而得到的文法。  
-![增广文法](/collegeLessons/compileSystem/compileLesson1/compile1_6.png)  
+![增广文法](/CollegeLessons/CompileSystem/CompileLesson1/compile1_6.png)  
 目的:使文法开始符号仅出现在一个产生式的左边，从而使得分析器只有一个接收状态。  
 
 ### 3.3 CLOSURE、GOTO函数及LR(0)项集族
@@ -161,7 +161,7 @@ $$GOTO(I,X)=CLOSURE({\{}A{\rightarrow}{\alpha}X\cdot{\beta}|A{\rightarrow}{\alph
 $$C={\{}I_{0}{\}}{\cup}{\{}I|{\exists}J{\in}C,X{\exists}V_{N}{\cup}V_{T},I=GOTO(J,X)\}$$  
 
 ### 3.4 LR(0)分析表构造算法 
-![LR(0)分析表构造算法](/collegeLessons/compileSystem/compileLesson1/compile1_7.png)  
+![LR(0)分析表构造算法](/CollegeLessons/CompileSystem/CompileLesson1/compile1_7.png)  
 
 ### 3.5 SLR分析法
 LR(0)存在移进归约冲突，可以根据$FOLLOW$集进行移进、归约操作。    
@@ -171,14 +171,14 @@ LR(0)分析法中，采取归约动作，而SLR分析法中，仅仅对于$FOLLO
 **存在的问题**:SLR仅简单的考察下一个输入符号b是否与归约项目$A{\rightarrow}{\alpha}$相关联的$FOLLOW(A)$，但$b{\in}FOLLOW(A)$只是归约$\alpha$的一个必要条件，而非充分条件。
 
 ### 3.6 LR(1)分析法  
-![不同位置，后继符号可能不同](/collegeLessons/compileSystem/compileLesson1/compile1_8.png)  
+![不同位置，后继符号可能不同](/CollegeLessons/CompileSystem/CompileLesson1/compile1_8.png)  
 在特定位置中，A的后继符号集合是$FOLLOW(A)$的子集，如图，分析树中S的右节点R的后继符只能为$\$$，而对于L的右节点，只有当下一个符号为=时，才能将L规约为R，我们采用$L{\rightarrow}*R{\cdot},=$。  
 **规范LR(1)项目**:将一般形式为$[A{\rightarrow}{\alpha}{\cdot}{\beta},a]$称为LR(1)项，其中$[A{\rightarrow}{\alpha}{\beta}$是一个产生式，$a$是一个终结符，(\$为一个特殊的终结符)，他表示在当前状态下，$A$后面必须紧跟终结符，称为该项的展望符。    
 **当$A{\rightarrow}{\alpha}{\cdot}{\beta},a$中${\beta}{\neq}{\epsilon}$时，展望符没有任何作用**  
 **对于$A{\rightarrow}{\alpha}{\cdot}{\beta},a$只有在下一个符号为a时，才能进行归约，a总是$FOLLOW(a)$的子集，而且通常为真子集**  
 
 **构造算法**:构造算法，对规约项目，只针对给定的后继符号归约。
-![LR(1)构造算法](/collegeLessons/compileSystem/compileLesson1/compile1_9.png)  
+![LR(1)构造算法](/CollegeLessons/CompileSystem/CompileLesson1/compile1_9.png)  
 
 
 
