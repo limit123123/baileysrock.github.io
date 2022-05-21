@@ -1,6 +1,6 @@
 ---
 home: true
-icon: intro
+icon: people
 title: About Me
 heroImage: /BlogConfig/icon.png
 heroText: 个人简介

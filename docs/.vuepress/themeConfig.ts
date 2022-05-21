@@ -50,6 +50,7 @@ export default defineThemeConfig({
 
 
   plugins: {
+
     blog: {
       autoExcerpt: true,
     },

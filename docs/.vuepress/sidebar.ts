@@ -5,6 +5,7 @@ export default defineSidebarConfig(
     
     "/articles/CollegeLessons": [
       "/" /* /bar/ */,
+      "/articles/CollegeLessons/",
       {
         text: "深入理解计算机系统",
         icon: "note",
@@ -54,15 +55,16 @@ export default defineSidebarConfig(
             icon: "note",
             collapsable: true,
             prefix: "CompileSystem/",
-            children: ["compileLesson1.md","compileLesson2.md","compileLesson3.md"],
+            children: ["compileLesson1.md","compileLesson2.md","compileLesson3.md","compileLesson4.md"],
           },
         ],
       },
     ],
 
 
-    "/articles/NaturalLanguageProcess": [
+    "/articles/NaturalLanguageProcessing": [
       "/" /* /bar/ */,
+      "/articles/NaturalLanguageProcessing/",
       {
         text: "Huggingface",
         icon: "note",
@@ -104,12 +106,27 @@ export default defineSidebarConfig(
 
     "/articles/DeepLearning": [
       "/" /* /bar/ */,
+      "/articles/DeepLearning",
       {
         text: "读论文",
         icon: "note",
         collapsable: true,
         prefix:"ReadingPapers/",
         children: ["FaceNet.md","AlexNet.md","ResNet.md","GAN.md"],
+      },
+     
+    ],
+
+
+    "/articles/Essays": [
+      "/" /* /bar/ */,
+      "/articles/Essays",
+      {
+        text: "2022",
+        icon: "note",
+        collapsable: false,
+        prefix:"2022/",
+        children: ["2022-05-21.md"],
       },
      
     ],

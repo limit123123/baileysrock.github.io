@@ -17,9 +17,9 @@ tag:
   - 学校课程
   - 编译原理
 # 此页面会在文章列表置顶
-sticky: true
+sticky: false
 # 此页面会出现在首页的文章板块中
-star: true
+star: false
 # 你可以自定义页脚
 footer: 语法分析
 ---

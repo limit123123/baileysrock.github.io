@@ -21,6 +21,8 @@ sticky: false
 star: false
 # 你可以自定义页脚
 footer: Baileys
+
+pageview: true
 ---
 ## 论文名称
 

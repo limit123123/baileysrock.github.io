@@ -19,7 +19,7 @@ tag:
 # 此页面会在文章列表置顶
 sticky: false
 # 此页面会出现在首页的文章板块中
-star: true
+star: false
 # 你可以自定义页脚
 footer: 中间代码生成
 ---
@@ -155,7 +155,58 @@ $c=t_{4}$
 
 
 
-## 控制流语句及其SDT
+## 控制流语句的翻译
+
+
+### 控制流语句的基本文法
+
+![控制流语句的基本文法](/CollegeLessons/CompileSystem/CompileLesson4/13.png)  
+
+### 控制流语句的代码结构
+
+![控制流语句的代码结构](/CollegeLessons/CompileSystem/CompileLesson4/14.png)  
+
+![控制流语句的代码结构](/CollegeLessons/CompileSystem/CompileLesson4/15.png)  
+
+### 控制流语句的SDT
+
+![控制流语句的SDT](/CollegeLessons/CompileSystem/CompileLesson4/16.png)  
+
+**例**  
+![控制流语句的SDT](/CollegeLessons/CompileSystem/CompileLesson4/17.png)  
+
+![控制流语句的SDT](/CollegeLessons/CompileSystem/CompileLesson4/18.png)  
+
+![控制流语句的SDT](/CollegeLessons/CompileSystem/CompileLesson4/19.png)  
+
+### 编写要点
+1. 分析每一个非终结符之前：先计算继承属性，再观察代码结构图中该非终结符对应的方框顶部是否有导入箭头。如果有，调用label( )函数。  
+2. 上一个代码框执行完不顺序执行下一个代码框时，生成一条显式跳转指令。  
+3. 有自下而上的箭头时，设置begin属性。且定义后直接调用label( )函数绑定地址。
+
+
+
+## 布尔表达式的翻译
+
+### 布尔表达式的基本文法
+在跳转代码中，逻辑运算符&&、|| 和 ! 被翻译成跳转指令。运算符本身不出现在代码中，布尔表达式的值是通过代码序列中的位置来表示的。  
+
+![布尔表达式的基本文法](/CollegeLessons/CompileSystem/CompileLesson4/20.png)  
+
+
+### 布尔表达式的SDT
+
+![布尔表达式的SDT](/CollegeLessons/CompileSystem/CompileLesson4/21.png)  
+
+![布尔表达式的SDT](/CollegeLessons/CompileSystem/CompileLesson4/22.png)  
+
+![布尔表达式的SDT](/CollegeLessons/CompileSystem/CompileLesson4/23.png)  
+
+
+
+
+
+
 
 
 

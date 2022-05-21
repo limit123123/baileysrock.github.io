@@ -14,19 +14,26 @@ projects:
     link: /articles/CollegeLessons
 
   - icon: table
-    name: 数据处理
-    desc: 记录pandas、numpy的一些操作
-    link: /articles/DataProcess
+    name: 机器学习
+    desc: 机器学习、模式识别、可解释性、数据处理
+    link: /articles/MachineLearning
   
-  - icon: script
+  - icon: news
     name: 自然语言处理
-    desc: 学习自然语言处理
+    desc: 自然语言处理相关
     link: /articles/NaturalLanguageProcessing
 
   - icon: script
     name: 深度学习
-    desc: 学习深度学习
+    desc: 深度学习相关
     link: /articles/DeepLearning
+
+  - icon: shell
+    name: 开发
+    desc: 开发相关
+    link: /articles/Development
+
+
 
   - icon: edit
     name: 随笔

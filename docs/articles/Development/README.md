@@ -2,7 +2,7 @@
 # 这是页面的图标
 icon: page
 # 这是文章的标题
-title: 深度学习
+title: 开发
 # 设置作者
 author: Baileys
 # 设置写作时间
@@ -16,14 +16,10 @@ footer: Baileys
 ---
 
 ## 相关说明
-本部分主要记录本人阅读论文的一些想法、学习深度学习相关知识记录等。
+本部分主要记录开发相关记录。  
 
-## 读论文
-
-- [FaceNet](ReadingPapers/FaceNet.html)
-- [AlexNet](ReadingPapers/AlexNet.html)
-- [ResNet](ReadingPapers/ResNet.html)
-- [GAN](ReadingPapers/GAN.html)
+## 数据库
+- [SQL](Database/SQL.html)
 
 
 
