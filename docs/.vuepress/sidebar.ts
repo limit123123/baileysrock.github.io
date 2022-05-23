@@ -17,13 +17,6 @@ export default defineSidebarConfig(
             prefix: "CSAPP/",
             children: ["finalProject"],
           },
-          // {
-          //   text: "文章 5-12",
-          //   icon: "note",
-          //   collapsable: true,
-          //   prefix: "article/",
-          //   children: ["article5", "article6", "article7", "article8"],
-          // },
         ],
       },
       {
@@ -106,7 +99,7 @@ export default defineSidebarConfig(
 
     "/articles/DeepLearning": [
       "/" /* /bar/ */,
-      "/articles/DeepLearning",
+      "/articles/DeepLearning/",
       {
         text: "读论文",
         icon: "note",
@@ -120,7 +113,7 @@ export default defineSidebarConfig(
 
     "/articles/Essays": [
       "/" /* /bar/ */,
-      "/articles/Essays",
+      "/articles/Essays/",
       {
         text: "2022",
         icon: "note",

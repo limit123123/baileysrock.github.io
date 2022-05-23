@@ -26,5 +26,12 @@ footer: Baileys
 - [GAN](ReadingPapers/GAN.html)
 
 
+## 深度学习相关代码
+
+### 哈工大模式识别与深度学习课程实验
+- [实验一](https://github.com/BaileysRock/DeepLearningExperiment/blob/master/Experiment1/Report/report.pdf)
+- [实验二](https://github.com/BaileysRock/DeepLearningExperiment/tree/master/Experiment2/Report/report.pdf)
+- [实验三]()
+
 
 
