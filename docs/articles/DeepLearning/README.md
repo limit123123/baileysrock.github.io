@@ -18,8 +18,10 @@ footer: Baileys
 ## 相关说明
 本部分主要记录本人阅读论文的一些想法、学习深度学习相关知识记录等。
 
-## 相关公式推导
-- [RNN](Formula/RNN.md)
+## 相关理论推导
+- [RNN](Theories/RNN.md)
+- [LSTM](Theories/LSTM.md)
+- [GRU](Theories/GRU.md)
 
 ## 读论文
 
