@@ -63,7 +63,7 @@ ImageNet、CIFAR10上的实验表明:
 1. 在输入和输出上分别添加0在额外的维度上，这种方法可以减小参数。  
 2. 使用1*1的卷积核并设置步长，使通道数、高宽对齐。  
 
-### 实现
+### 实验相关设置
 
 
 网络相关设置:  
@@ -94,5 +94,173 @@ ImageNet2012数据集包括1000分类，模型在128万图片下训练，并在5
 
 
 
+## 代码实现
+
+### Basic Block的实现
+
+![basic block](/DeepLearning/ReadingPapers/ResNet/2.png)  
+```python
+class BasicBlock(nn.Module):
+    expansion = 1
+    def __init__(self, in_channels, out_channels, stride=1, downsample=None):
+        super(BasicBlock, self).__init__()
+        self.basicblock = nn.Sequential(
+            nn.Conv2d(in_channels, out_channels, kernel_size=3, stride=stride, padding=1, bias=False),
+            nn.BatchNorm2d(out_channels),
+            nn.ReLU(inplace=False),
+            nn.Conv2d(out_channels, out_channels, kernel_size=3, stride=1, padding=1, bias=False),
+            nn.BatchNorm2d(out_channels),
+        )
+        self.relu = nn.ReLU(inplace=False)
+        self.downsample = downsample
+
+    def forward(self, input):
+        residual = input
+        x = self.basicblock(input)
+        if self.downsample:
+            residual = self.downsample(residual)
+        x += residual
+        x = self.relu(x)
+        return x
+```
+
+### Bottle Neck的实现
+![bottle neck](/DeepLearning/ReadingPapers/ResNet/6.png)  
+```python
+class BottleNeck(nn.Module):
+    # 维度扩张
+    expansion = 4
+    def __init__(self, in_channels, out_channels, stride=1, downsample=None):
+        super(BottleNeck, self).__init__()
+        self.bottleneck = nn.Sequential(
+            nn.Conv2d(in_channels, out_channels, kernel_size=1, bias=False),
+            nn.BatchNorm2d(out_channels),
+            nn.ReLU(inplace=False),
+            nn.Conv2d(out_channels, out_channels, kernel_size=3, stride=stride, padding=1, bias=False),
+            nn.BatchNorm2d(out_channels),
+            nn.ReLU(inplace=False),
+            nn.Conv2d(out_channels, out_channels * self.expansion, kernel_size=1, bias=False),
+            nn.BatchNorm2d(out_channels * self.expansion),
+        )
+        self.relu = nn.ReLU(inplace=False)
+        self.downsample = downsample
+
+    def forward(self, input):
+        residual = input
+        x = self.bottleneck(input)
+        if self.downsample:
+            residual = self.downsample(residual)
+        x += residual
+        x = self.relu(x)
+        return x
+```
+
+### ResNet各个版本的实现
+![architecture](/DeepLearning/ReadingPapers/ResNet/3.png)  
+```python
+class ResNet(nn.Module):
+    """
+    ResNet的具体实现
+    """
+    def __init__(self, block, num_layer, n_classes, init_weights=True):
+        super(ResNet, self).__init__()
+        self.in_channels = 64
+        # 定义网络结构
+        self.conv1 = nn.Conv2d(in_channels=3, out_channels=64, kernel_size=7, stride=2, padding=3, bias=False)
+        self.bn1 = nn.BatchNorm2d(64)
+        self.maxpool = nn.MaxPool2d(3, stride=2, padding=1)
+        self.relu = nn.ReLU(inplace=False)
+        self.layer1 = self._make_layer(block, 64, num_layer[0])
+        self.layer2 = self._make_layer(block, 128, num_layer[1], 2)
+        self.layer3 = self._make_layer(block, 256, num_layer[2], 2)
+        self.layer4 = self._make_layer(block, 512, num_layer[3], 2)
+        self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
+        self.flatten = nn.Flatten()
+        self.fc = nn.Linear(512 * block.expansion, n_classes)
+        if init_weights == True:
+            for m in self.modules():
+                if isinstance(m, nn.Conv2d):
+                    nn.init.kaiming_normal_(m.weight, mode="fan_out", nonlinearity="relu")
+                elif isinstance(m, nn.BatchNorm2d):
+                    nn.init.constant_(m.weight, 1)
+                    nn.init.constant_(m.bias, 0)
+
+    def _make_layer(self, block, out_channels, num_block, stride=1):
+        downsample = None
+        if stride != 1 or self.in_channels != out_channels * block.expansion:
+            downsample = nn.Sequential(
+                nn.Conv2d(self.in_channels, out_channels * block.expansion, 1, stride=stride, bias=False),
+                nn.BatchNorm2d(out_channels * block.expansion)
+            )
+        layers = []
+        layers.append(block(self.in_channels, out_channels, stride, downsample))
+        self.in_channels = out_channels * block.expansion
+        for _ in range(1,num_block):
+            layers.append(block(self.in_channels, out_channels))
+        return nn.Sequential(*layers)
+
+    def forward(self, inputs):
+        x = self.conv1(inputs)
+        x = self.bn1(x)
+        x = self.relu(x)
+        x = self.maxpool(x)
+
+        x = self.layer1(x)
+        x = self.layer2(x)
+        x = self.layer3(x)
+        x = self.layer4(x)
+
+        x = self.avgpool(x)
+        x = self.flatten(x)
+        x = self.fc(x)
+        x = F.softmax(x, dim=1)
+        return x
+
+def ResNet18(n_classes: int):
+    """
+    构造ResNet18模型
+    :return: ResNet18
+    """
+    model = ResNet(block=BasicBlock, num_layer=[2, 2, 2, 2], n_classes=n_classes)
+    return model
+
+def ResNet34(n_classes: int):
+    """
+    构造ResNet34模型
+    :return: ResNet34
+    """
+    model = ResNet(block=BasicBlock, num_layer=[3, 4, 6, 3], n_classes=n_classes)
+    return model
 
 
+def ResNet50(n_classes: int):
+    """
+    构造ResNet50模型
+    :return: ResNet50
+    """
+    model = ResNet(block=BottleNeck, num_layer=[3, 4, 6, 3], n_classes=n_classes)
+    return model
+
+def ResNet101(n_classes: int):
+    """
+    构造ResNet101模型
+    :return: ResNet101
+    """
+    model = ResNet(block=BottleNeck, num_layer=[3, 4, 23, 3], n_classes=n_classes)
+    return model
+
+def ResNet152(n_classes: int):
+    """
+    构造ResNet152模型
+    :return: ResNet152
+    """
+    model = ResNet(block=BottleNeck, num_layer=[3, 8, 36, 3], n_classes=n_classes)
+    return model
+
+```
+
+
+## 参考文献
+[1] [PyTorch实现ResNet](https://zhuanlan.zhihu.com/p/129861013)  
+[2] [PyTorch visions](https://github.com/pytorch/vision/blob/main/torchvision/models/resnet.py)
+[3] [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)

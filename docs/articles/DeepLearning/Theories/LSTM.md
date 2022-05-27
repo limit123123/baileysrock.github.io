@@ -108,7 +108,15 @@ $$c_{t}=(1-i_{t})\odot c_{t-1}+i_{t}{\odot}{\widetilde{c}_{t}}$$
 
 ## 代码实现
 
+### 矩阵实现
+```python
 
+```
+
+### 使用nn.Linear实现
+```python
+
+```
 
 
 
