@@ -24,13 +24,13 @@ footer: Baileys
 
 ## 一、RNN的几种基本的结构
 ### 1.1 结构一
-<!-- ![结构一](/DeepLearning/Theories/RNN/1.png)   -->
+![结构一](/DeepLearning/Theories/RNN/1.png)  
 
 上述所示RNN的结构中，输入序列为$X=(x^{0},x^{1},...,x^{l-1})$。对于任意时刻$t$，$h^{t}$由$h^{t-1}$和$x^{t}$共同决定。且目标时刻$t$对应于目标输出$y^{t}$。这样的结构很适合时间序列类预测的任务，模型可以通过之前的信息$h^{t-1}$和当前的输入$x_{t}$来预测当前时刻的输出$\hat{y}^{t}$。该结构最大的问题是时刻$t$的损失$L^{t}$与所有之前的状态$h^{t-1}$,$h^{t-2}$,...,$h^{0}$都有关系。因此求$h^{t}$时，要先求$h^{t-1}$。在反向传播时，需要对每一个输入进行前向传播过程来计算网络的activation，而RNN的顺序计算，会导致难以并行化，导致训练较慢。  
 
 
 ### 1.2 结构二
-<!-- ![结构二](/DeepLearning/Theories/RNN/2.png)   -->
+![结构二](/DeepLearning/Theories/RNN/2.png)  
 
 与结构一相比，这种结构取消了相邻时刻间状态$h$之间的连接，取而代之的是前一时刻的输出$o^{t-1}$与当前时刻状态$h^{t}$的连接，此时仍然是顺序计算，但$o$的维度通常小于$h$，因此训练参数可能减少。模型的缺点主要是$y^{t}$中的信息远少于$h^{t}$，因此模型对历史信息的学习能力不如结构一。  
 
@@ -38,14 +38,14 @@ footer: Baileys
 
 
 ### 1.3 结构三
-<!-- ![结构三](/DeepLearning/Theories/RNN/3.png)   -->
+![结构三](/DeepLearning/Theories/RNN/3.png)  
 
 该结构的RNN仅在最后时刻$l$才会有输出$o^{l}$。
 
 ## 二、前向传播
 
 ### 2.1 理论推导
-<!-- ![结构三](/DeepLearning/Theories/RNN/4.png)   -->
+![结构三](/DeepLearning/Theories/RNN/4.png)  
 定义完全连接的循环神经网络，输入为$x_{t}$，输出为$y_{t}$。  
 $$h_{t}=f(Uh_{t-1}+Wx_{t}+b)$$
 $$y_{t}=Vh_{t}$$  
@@ -98,7 +98,7 @@ def get_params(embedding_size, output_size, num_hiddens, device):
 
 ## 三、应用模式
 ### 3.1 序列到类别模式  
-<!-- ![序列到类别模式](/DeepLearning/Theories/RNN/5.png)   -->
+![序列到类别模式](/DeepLearning/Theories/RNN/5.png)  
 ::: tip
 主要用于序列数据的分类：输入数据为序列，输出为类别。   
 
@@ -109,7 +109,7 @@ def get_params(embedding_size, output_size, num_hiddens, device):
 :::
 
 ### 3.2 同步的序列到序列模式
-<!-- ![同步的序列到序列模式](/DeepLearning/Theories/RNN/6.png)   -->
+![同步的序列到序列模式](/DeepLearning/Theories/RNN/6.png)  
 ::: tip
 主要用于序列标注任务，即每一时刻都有输入和输出，输入序列和输出序列的长度相同。  
 
@@ -118,7 +118,7 @@ def get_params(embedding_size, output_size, num_hiddens, device):
 :::
 
 ### 3.3 异步的序列到序列模式
-<!-- ![异步的序列到序列模式](/DeepLearning/Theories/RNN/7.png)   -->
+![异步的序列到序列模式](/DeepLearning/Theories/RNN/7.png)  
 
 令$f_{1}(\cdot)$和$f_{2}(\cdot)$分别为编码器和解码器的循环神经网络，则编码器-解码器模型可以写为:  
 $$h_{t}=f_{1}(h_{t-1},x_{t}),{\forall}t{\in}[1,T]$$
@@ -177,7 +177,7 @@ $$\frac{\partial{\mathcal{L}}}{\partial{W}}=\sum_{t=1}^{T}\sum_{k=1}^{t}\delta_{
 $$\frac{\partial{\mathcal{L}}}{\partial{b}}=\sum_{t=1}^{T}\sum_{k=1}^{t}\delta_{t,k}$$
 $$$$
 误差随时间进行反向传播算法的示例:  
-<!-- ![BPTT](/DeepLearning/Theories/RNN/8.png)    -->
+![BPTT](/DeepLearning/Theories/RNN/8.png)   
 由上述推导过程可知，在BPTT算法中，参数的梯度需要在一个完整的“前向”计算和“反向”计算后才能得到并进行参数更新。  
 
 ### 4.2 实时循环学习算法 RTRL
