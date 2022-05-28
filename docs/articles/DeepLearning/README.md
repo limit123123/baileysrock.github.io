@@ -28,7 +28,8 @@ footer: Baileys
 - [FaceNet](ReadingPapers/FaceNet.html)
 - [AlexNet](ReadingPapers/AlexNet.html)
 - [ResNet](ReadingPapers/ResNet.html)
-- [GAN](ReadingPapers/GAN.html)
+- [SENet](ReadingPapers/SENet.html)  
+- [GAN](ReadingPapers/GAN.html)  
 
 
 ## 深度学习相关代码
