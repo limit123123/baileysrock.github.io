@@ -59,40 +59,47 @@ export default defineSidebarConfig(
       "/" /* /bar/ */,
       "/articles/NaturalLanguageProcessing/",
       {
-        text: "Huggingface",
+        text: "读论文",
         icon: "note",
         collapsable:true,
-        children: [
-          {
-            text: "trainer",
-            icon: "note",
-            collapsable: true,
-            prefix: "trainer/",
-            children: ["trainer.md"],
-          },
-          {
-            text: "tokenizer",
-            icon: "note",
-            collapsable: true,
-            prefix: "tokenizer/",
-            children: ["tokenizer.md"],
-          },
-        ],
-      },
-
-      {
-        text: "基于预训练模型的方法",
-        icon: "note",
-        collapsable:true,
-        children:[
-          {
-            text:"",
-            collapsable:true,
-            prefix:"",
-            children:[],
-          }
-        ]
+        prefix:"ReadingPapers/",
+        children:["IncorporatingHierarchyIntoTextEncoder.md"]
       }
+      // {
+      //   text: "Huggingface",
+      //   icon: "note",
+      //   collapsable:true,
+      //   children: [
+      //     {
+      //       text: "trainer",
+      //       icon: "note",
+      //       collapsable: true,
+      //       prefix: "trainer/",
+      //       children: ["trainer.md"],
+      //     },
+      //     {
+      //       text: "tokenizer",
+      //       icon: "note",
+      //       collapsable: true,
+      //       prefix: "tokenizer/",
+      //       children: ["tokenizer.md"],
+      //     },
+      //   ],
+      // },
+
+      // {
+      //   text: "基于预训练模型的方法",
+      //   icon: "note",
+      //   collapsable:true,
+      //   children:[
+      //     {
+      //       text:"",
+      //       collapsable:true,
+      //       prefix:"",
+      //       children:[],
+      //     }
+      //   ]
+      // }
      
     ],
     
@@ -106,6 +113,13 @@ export default defineSidebarConfig(
         collapsable: true,
         prefix:"ReadingPapers/",
         children: ["FaceNet.md","AlexNet.md","ResNet.md","GAN.md"],
+      },
+      {
+        text: "理论推导",
+        icon: "note",
+        collapsable: true,
+        prefix:"Theories/",
+        children: ["RNN.md", "GRU.md", "LSTM.md"],
       },
      
     ],

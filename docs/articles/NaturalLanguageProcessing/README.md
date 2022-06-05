@@ -16,3 +16,10 @@ footer: Baileys
 ---
 
 ## 自然语言处理
+
+
+### 读论文
+#### 文本分类相关
+- [Incorporating Hierarchy into Text Encoder: a Contrastive Learning Approach for Hierarchical Text Classification]()
+
+
