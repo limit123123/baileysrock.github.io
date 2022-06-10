@@ -102,12 +102,12 @@ $$L=LayerNorm(softmax(A^{G})V+F)$$
 
 ### Positive Sample Generation
 如前所述，正样本生成的目标是在保留标签的同时保留一部分标记。给定一个的符号序列，定义BERT的符号嵌入为:  
-$${e_{1},e_{2},...,e_{n}}=BERT_emb(x)$$
+$${e_{1},e_{2},...,e_{n}}=BERT_{emb}(x)$$
 首先计算token embedding和标签特征之间的scale-dot attention，以确定token在标签上的重要性。  
 $$q_{i}=e_{i}W_{Q},k_{j}=l_{j}W_{K},A_{ij}=\frac{q_{i}k_{j}^{T}}{\sqrt{d_{h}}}$$
 query和key分别是token嵌入和标签特征，$W_{Q}{\in}\mathbb{R}^{d_{h}{\times}d_{h}}$，$W_{K}{\in}\mathbb{R}^{d_{h}{\times}d_{h}}$是两个权重矩阵。因此，对于某个$x_{i}$，它属于标签$y_{j}$的概率可以用Softmax函数归一化。  
 接下来，给定一个标签$y_{j}$，我们可以从该分布中抽取出关键的token，并形成一个正样本$\widetilde{x}$。为了使采样可微，将Softmax函数替换为Gumbel-Softmax(Jang et al.， 2016)来模拟采样操作:
-$$P_{ij}=gumbel_softmax(A_{i1},A_{i2},...,A_{ik})_{j}$$
+$$P_{ij}=gumbel_{softmax}(A_{i1},A_{i2},...,A_{ik})_{j}$$
 
 一个token可以影响多个标签，因此在这一步中，没有将概率离散为一个one-hot向量。相反，我们为正例保留token，如果它们被采样的概率超过某个阈值$\gamma$，，这也可以控制要重新训练的token的比例。对于多标签分类，我们将所有ground-truth标签的概率相加，得到一个token $x_{i}$关于其ground-truth标签集y的概率为:
 $$P_{i}=\sum_{j{\in}y}P_{ij}$$

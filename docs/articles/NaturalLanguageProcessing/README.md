@@ -19,7 +19,14 @@ footer: Baileys
 
 
 ### 读论文
-#### 文本分类相关
-- [Incorporating Hierarchy into Text Encoder: a Contrastive Learning Approach for Hierarchical Text Classification]()
+#### 文本分类
+- [Incorporating Hierarchy into Text Encoder: a Contrastive Learning Approach for Hierarchical Text Classification](ReadingPapers/IncorporatingHierarchyIntoTextEncoder.html)
+
+
+#### 图神经网络
+- [Do Transformers Really Perform Bad for Graph Representation?](ReadingPapers/DoTransformersReallyPerformBadforGraphRepresentation.html)
+
+
+
 
 
