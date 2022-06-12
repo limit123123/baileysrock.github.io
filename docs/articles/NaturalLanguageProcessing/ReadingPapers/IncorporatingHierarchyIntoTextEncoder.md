@@ -72,6 +72,8 @@ HTC现有的方法采用了多种引入层次信息的方法。在最近的研�
 ## Methodology
 详细介绍HGCLR(分层引导学习)
 
+![模型结构](/NaturalLanguageProcessing/ReadingPapers/IncorporatingHierarchyIntoTextEncoder/2.png)
+
 ### Text Encoder
 本方法需要一个强大的文本编码器来进行层次注入，因此选择BERT作为文本编码器。给定一个输入token序列:  
 $$x=\{[CLS],x_{1},x_{2},...,x_{n-2},[SEP]\}$$
