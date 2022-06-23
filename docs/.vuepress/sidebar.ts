@@ -63,7 +63,8 @@ export default defineSidebarConfig(
         icon: "note",
         collapsable:true,
         prefix:"ReadingPapers/",
-        children:["IncorporatingHierarchyIntoTextEncoder.md", "DoTransformersReallyPerformBadforGraphRepresentation.md"]
+        children:["IncorporatingHierarchyIntoTextEncoder.md", "DoTransformersReallyPerformBadforGraphRepresentation.md", 
+            "Hierarchy-AwareGlobalModelForHierarchicalTextClassification.md"]
       }
       // {
       //   text: "Huggingface",
