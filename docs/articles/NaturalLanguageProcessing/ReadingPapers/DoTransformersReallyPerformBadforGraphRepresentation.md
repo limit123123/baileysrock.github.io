@@ -66,7 +66,7 @@ Transformer最初是为序列建模而设计的。为了在图中利用它的功
 本节主要回顾图神经网络、Transformer.  
 
 主要结构如下图所示:  
-![模型结构](/NaturalLanguageProcessing/ReadingPapers/DoTransformersReallyPerformBadforGraphRepresentation/1.png)
+![模型结构](/NaturalLanguageProcessing/ReadingPapers/DoTransformersReallyPerformBadForGraphRepresentation/1.png)
 
 ### Graph Neural Network(GNN)
 $G=(V,E)$表示图，其中$V=\{v_{1},v_{2},...,v_{n}\}$，且$n=|V|$为节点数量，使节点$v_{i}$的特征向量为$x_{i}$，GNN旨在学习节点和图的表示。  
