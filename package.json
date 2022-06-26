@@ -4,17 +4,15 @@
   "description": "Baileys Blog",
   "license": "MIT",
   "scripts": {
-    "docs:build": "vuepress build ./docs/",
-    "docs:clean-dev": "vuepress dev ./docs/ --clean-cache",
-    "docs:dev": "vuepress dev ./docs/"
+    "docs:build": "vuepress build ./blog/",
+    "docs:clean-dev": "vuepress dev ./blog/ --clean-cache",
+    "docs:dev": "vuepress dev ./blog/"
   },
   "devDependencies": {
     "@vuepress/client": "^2.0.0-beta.48",
+    "@vuepress/plugin-search": "^2.0.0-beta.48",
     "vue": "^3.2.36",
     "vuepress": "^2.0.0-beta.48",
     "vuepress-theme-hope": "^2.0.0-beta.84"
-  },
-  "dependencies": {
-    "@vuepress/plugin-search": "^1.9.7"
   }
 }
