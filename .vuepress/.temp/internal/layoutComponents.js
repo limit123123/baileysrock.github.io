@@ -1,8 +1,6 @@
 import { defineAsyncComponent } from 'vue'
 
 export const layoutComponents = {
-  "404": defineAsyncComponent(() => import("E:/Code/WebStormProjects/baileysrock.github.io/node_modules/vuepress-theme-hope/lib/client/layouts/404.js")),
-  "Layout": defineAsyncComponent(() => import("E:/Code/WebStormProjects/baileysrock.github.io/node_modules/vuepress-theme-hope/lib/client/layouts/Layout.js")),
-  "Slide": defineAsyncComponent(() => import("E:/Code/WebStormProjects/baileysrock.github.io/node_modules/vuepress-theme-hope/lib/client/layouts/Slide.js")),
-  "Blog": defineAsyncComponent(() => import("E:/Code/WebStormProjects/baileysrock.github.io/node_modules/vuepress-theme-hope/lib/client/module/blog/layouts/Blog.js")),
+  "404": defineAsyncComponent(() => import("C:/Users/xiong/Desktop/5/node_modules/@vuepress/theme-default/lib/client/layouts/404.vue")),
+  "Layout": defineAsyncComponent(() => import("C:/Users/xiong/Desktop/5/node_modules/@vuepress/theme-default/lib/client/layouts/Layout.vue")),
 }
