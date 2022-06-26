@@ -1,0 +1,14 @@
+export const data = JSON.parse("{\"key\":\"v-dc60fcbc\",\"path\":\"/articles/CollegeLessons/SoftwareConstructure/lesson4.html\",\"title\":\"代码评审\",\"lang\":\"zh-CN\",\"frontmatter\":{\"icon\":\"page\",\"title\":\"代码评审\",\"author\":\"Baileys\",\"date\":\"2020-01-01T00:00:00.000Z\",\"category\":[\"学校课程\"],\"tag\":[\"学校课程\",\"软件构造\"],\"sticky\":false,\"star\":false,\"footer\":\"Baileys\"},\"excerpt\":\"\",\"headers\":[{\"level\":2,\"title\":\"1.代码评审\",\"slug\":\"_1-代码评审\",\"children\":[]},{\"level\":2,\"title\":\"2.风格标准\",\"slug\":\"_2-风格标准\",\"children\":[]},{\"level\":2,\"title\":\"3.别写重复的代码\",\"slug\":\"_3-别写重复的代码\",\"children\":[]},{\"level\":2,\"title\":\"4.仅在需要的地方注释\",\"slug\":\"_4-仅在需要的地方注释\",\"children\":[{\"level\":3,\"title\":\"Javadoc标准\",\"slug\":\"javadoc标准\",\"children\":[]},{\"level\":3,\"title\":\"标注引用的代码\",\"slug\":\"标注引用的代码\",\"children\":[]},{\"level\":3,\"title\":\"去掉不必要的注释\",\"slug\":\"去掉不必要的注释\",\"children\":[]}]},{\"level\":2,\"title\":\"5.快速报错/失败\",\"slug\":\"_5-快速报错-失败\",\"children\":[]},{\"level\":2,\"title\":\"6.避免幻数\",\"slug\":\"_6-避免幻数\",\"children\":[]},{\"level\":2,\"title\":\"7.远离bug、易读性、易改动性\",\"slug\":\"_7-远离bug、易读性、易改动性\",\"children\":[]},{\"level\":2,\"title\":\"8.每个变量有且只有一个目的\",\"slug\":\"_8-每个变量有且只有一个目的\",\"children\":[]},{\"level\":2,\"title\":\"9.使用好的名称\",\"slug\":\"_9-使用好的名称\",\"children\":[]},{\"level\":2,\"title\":\"10.使用空白符\",\"slug\":\"_10-使用空白符\",\"children\":[]},{\"level\":2,\"title\":\"11.不要使用全局变量\",\"slug\":\"_11-不要使用全局变量\",\"children\":[]},{\"level\":2,\"title\":\"12.在快照图中的各种变量\",\"slug\":\"_12-在快照图中的各种变量\",\"children\":[]},{\"level\":2,\"title\":\"13.类是何时被加载进虚拟机的\",\"slug\":\"_13-类是何时被加载进虚拟机的\",\"children\":[{\"level\":3,\"title\":\"当我们通过“new”关键字创建出一个对象实例时，会将该类加载到虚拟机中。\",\"slug\":\"当我们通过-new-关键字创建出一个对象实例时-会将该类加载到虚拟机中。\",\"children\":[]},{\"level\":3,\"title\":\"当我们访问一个类的静态方法或者静态属性时，会将该类加载至虚拟机中。\",\"slug\":\"当我们访问一个类的静态方法或者静态属性时-会将该类加载至虚拟机中。\",\"children\":[]},{\"level\":3,\"title\":\"当初始化一个类的时候会初始化该类的静态代码块，如果这其中有引用到其它类，那么被引用的类也会进行加载。\",\"slug\":\"当初始化一个类的时候会初始化该类的静态代码块-如果这其中有引用到其它类-那么被引用的类也会进行加载。\",\"children\":[]},{\"level\":3,\"title\":\"通过反射(使用Class.forName()方法)，也会导致类加载。\",\"slug\":\"通过反射-使用class-forname-方法-也会导致类加载。\",\"children\":[]},{\"level\":3,\"title\":\"当加载子类时，会先加载它的父类。\",\"slug\":\"当加载子类时-会先加载它的父类。\",\"children\":[]}]},{\"level\":2,\"title\":\"14.方法应该返回，而不是打印\",\"slug\":\"_14-方法应该返回-而不是打印\",\"children\":[]}],\"readingTime\":{\"minutes\":9.75,\"words\":2924},\"filePathRelative\":\"articles/CollegeLessons/SoftwareConstructure/lesson4.md\",\"localizedDate\":\"2020年1月1日\"}")
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}
