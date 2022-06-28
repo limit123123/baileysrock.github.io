@@ -21,12 +21,20 @@ footer: Baileys
 
 ### 读论文
 #### 文本分类
-- [Incorporating Hierarchy into Text Encoder: a Contrastive Learning Approach for Hierarchical Text Classification](ReadingPapers/IncorporatingHierarchyIntoTextEncoder.html)
+##### 分层文本分类
+- [Hierarchy-Aware Global Model for Hierarchical Text Classification](ReadingPapers/Hierarchy-AwareGlobalModelForHierarchicalTextClassification.html)(ACL2020)
 
-- [Hierarchy-Aware Global Model for Hierarchical Text Classification](ReadingPapers/Hierarchy-AwareGlobalModelForHierarchicalTextClassification.html)
+- [Hierarchy-awareLabelSemanticsMatchingNetworkforHierarchicalTextClassification.md](ReadingPapers/Hierarchy-awareLabelSemanticsMatchingNetworkforHierarchicalTextClassification.html)(ACL2021)
+
+- [HTCInfoMax: A Global Model for Hierarchical Text Classification via Information Maximization](ReadingPapers/HTCInfoMax.html) (NAACL2021)
+
+- [Incorporating Hierarchy into Text Encoder: a Contrastive Learning Approach for Hierarchical Text Classification](ReadingPapers/IncorporatingHierarchyIntoTextEncoder.html)(ACL2022)
+
+
+
 
 #### 图神经网络
-- [Do Transformers Really Perform Bad for Graph Representation?](ReadingPapers/DoTransformersReallyPerformBadforGraphRepresentation.html)
+- [Do Transformers Really Perform Bad for Graph Representation?](ReadingPapers/DoTransformersReallyPerformBadforGraphRepresentation.html)(NIPS2021)
 
 
 

@@ -63,8 +63,11 @@ export default sidebar(
         icon: "note",
         collapsable:true,
         prefix:"ReadingPapers/",
-        children:["IncorporatingHierarchyIntoTextEncoder.md", "DoTransformersReallyPerformBadforGraphRepresentation.md", 
-            "Hierarchy-AwareGlobalModelForHierarchicalTextClassification.md"]
+        children:["Hierarchy-AwareGlobalModelForHierarchicalTextClassification.md",
+        "Hierarchy-awareLabelSemanticsMatchingNetworkforHierarchicalTextClassification.md",
+        "IncorporatingHierarchyIntoTextEncoder.md", 
+        "DoTransformersReallyPerformBadforGraphRepresentation.md", 
+            ]
       }
       // {
       //   text: "Huggingface",

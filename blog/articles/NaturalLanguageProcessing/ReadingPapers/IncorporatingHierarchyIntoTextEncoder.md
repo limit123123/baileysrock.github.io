@@ -25,7 +25,9 @@ footer: Baileys
 pageview: true
 ---
 ## 论文名称
-[Incorporating Hierarchy into Text Encoder: a Contrastive Learning Approach for Hierarchical Text Classification](https://aclanthology.org/2022.acl-long.491.pdf)
+[Incorporating Hierarchy into Text Encoder: a Contrastive Learning Approach for Hierarchical Text Classification](https://aclanthology.org/2022.acl-long.491.pdf)  
+
+会议:ACL2022  
 
 ## Abstract
 由于标签层次结构复杂，分层文本分类是多标签分类的一项具有挑战性的子任务。现有的方法分别对文本和标签层次结构进行编码，并混合它们的表示形式进行分类，其中对于所有输入文本，层次结构保持不变。在这项工作中，我们提出了分层引导对比学习(HGCLR)，而不是分别建模它们，直接将分层嵌入到文本编码器中。在训练过程中，HGCLR在标签层次结构的指导下，为输入文本构建正样本。通过将输入文本和它的正样本放在一起，文本编码器可以学习独立地生成支持层次结构的文本表示。因此，经过训练，HGCLR增强文本编码器可以省去冗余的层次结构。在三个基准数据集上的大量实验验证了HGCLR的有效性。

@@ -26,8 +26,8 @@ export default hopeTheme({
   iconAssets: "iconfont",
   fullscreen: true,
 
-  docsRepo: "https://github.com/BaileysRock/baileysrock.github.io.git",
-  docsDir: "",
+  docsRepo: "https://github.com/BaileysRock/baileysrock.github.io",
+  docsDir: "/blog/",
   docsBranch: "master",
 
   // navbar
@@ -43,10 +43,10 @@ export default hopeTheme({
   pageInfo: ["Author", "Original", "Date", "Category", "Tag", "ReadingTime", "PageView"],
 
   blog: {
-    description: "计算机科学与技术 人工智能方向在读大三学生",
+    description: "计算机科学与技术在读大三学生",
     intro: "/home.html",
     medias: {
-      Email: "https://xiong257246@outlook.com",
+      Email: "mailto:xiong257246@outlook.com",
       GitHub: "https://github.com/BaileysRock",
     },
   },

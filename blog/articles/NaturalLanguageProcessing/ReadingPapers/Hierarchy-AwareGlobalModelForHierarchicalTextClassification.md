@@ -26,8 +26,8 @@ pageview: true
 ---
 
 ## 论文名称
-[Hierarchy-Aware Global Model for Hierarchical Text Classification](https://aclanthology.org/2020.acl-main.104/?ref=https://githubhelp.com)
-
+[Hierarchy-Aware Global Model for Hierarchical Text Classification](https://aclanthology.org/2020.acl-main.104/?ref=https://githubhelp.com)  
+会议:ACL2020
 
 ## Abstract
 分层文本分类是具有分类层次的多标签文本分类的一项重要而富有挑战性的子任务。

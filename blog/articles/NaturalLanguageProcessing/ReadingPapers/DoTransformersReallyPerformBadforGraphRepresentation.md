@@ -25,8 +25,9 @@ footer: Baileys
 pageview: true
 ---
 ## 论文名称
-[Do Transformers Really Perform Bad for Graph Representation?](https://proceedings.neurips.cc/paper/2021/hash/f1c1592588411002af340cbaedd6fc33-Abstract.html)
+[Do Transformers Really Perform Bad for Graph Representation?](https://proceedings.neurips.cc/paper/2021/hash/f1c1592588411002af340cbaedd6fc33-Abstract.html)  
 
+会议: NIPS2021
 
 ## Abstract
 Transformer结构已经成为许多领域的主要选择，例如自然语言处理和计算机视觉。然而，与主流的GNN变体相比，它在流行的graph-level的排行榜上并没有取得具有竞争力的表现。因此，Transformer如何很好地进行图表示学习仍然是一个谜。  
