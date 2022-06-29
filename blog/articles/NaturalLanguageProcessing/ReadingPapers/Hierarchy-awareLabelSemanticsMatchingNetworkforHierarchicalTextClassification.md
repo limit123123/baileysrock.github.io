@@ -7,7 +7,7 @@ title: Hierarchy-aware Label Semantics Matching Network for Hierarchical Text Cl
 # 设置作者
 author: Baileys
 # 设置写作时间
-date: 2022-06-05
+date: 2022-06-20
 # 一个页面可以有多个分类
 category:
   - 自然语言处理

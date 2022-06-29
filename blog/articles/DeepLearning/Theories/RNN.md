@@ -198,7 +198,7 @@ $$\frac{\partial{\mathcal{L}_{t}}}{\partial{u_{ij}}}=\frac{\partial{h_{t}}}{\par
 ## 参考文献
 [1] 邱锡鹏，神经网络与深度学习，机械工业出版社，https://nndl.github.io/, 2020.  
 [2] [深度学习（三）：详解循环神经网络RNN，含公式推导](https://blog.csdn.net/weixin_40871455/article/details/89670970)  
-[3] [动手学深度学习](https://zh.d2l.ai/)
+[3] [动手学深度学习](https://zh.d2l.ai/)  
 [4] [零基础入门深度学习(5) - 循环神经网络](https://zybuluo.com/hanbingtao/note/541458)
 
 

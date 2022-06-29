@@ -7,7 +7,7 @@ title: Hierarchy-Aware Global Model for Hierarchical Text Classification
 # 设置作者
 author: Baileys
 # 设置写作时间
-date: 2022-06-05
+date: 2022-06-10
 # 一个页面可以有多个分类
 category:
   - 自然语言处理
