@@ -60,14 +60,28 @@ export default sidebar(
       "/articles/NaturalLanguageProcessing/",
       {
         text: "读论文",
-        icon: "note",
+        icon: "script",
         collapsable:true,
         prefix:"ReadingPapers/",
-        children:["Hierarchy-AwareGlobalModelForHierarchicalTextClassification.md",
-        "Hierarchy-awareLabelSemanticsMatchingNetworkforHierarchicalTextClassification.md",
-        "IncorporatingHierarchyIntoTextEncoder.md", 
-        "DoTransformersReallyPerformBadforGraphRepresentation.md", 
-            ]
+        children:[
+          {
+            text: "多层文本分类",
+            icon: "note",
+            collapsable: true,
+            prefix: "",
+            children: ["Hierarchy-AwareGlobalModelForHierarchicalTextClassification.md",
+            "Hierarchy-awareLabelSemanticsMatchingNetworkforHierarchicalTextClassification.md",
+            "HTCInfoMax.md",
+            "IncorporatingHierarchyIntoTextEncoder.md", ],
+          },
+          {
+            text: "图神经网络",
+            icon: "note",
+            collapsable: true,
+            prefix: "",
+            children: ["DoTransformersReallyPerformBadforGraphRepresentation.md", ],
+          }
+        ],
       }
       // {
       //   text: "Huggingface",
